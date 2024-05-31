@@ -1,0 +1,143 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+
+#############
+# Options
+#############
+
+setopt AUTO_CD
+setopt HIST_SAVE_NO_DUPS
+setopt AUTO_PUSHD           # Push the current directory visited on the stack
+setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack
+setopt PUSHD_SILENT         # Do not print the directory stack after pushd or popd.
+setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' form
+setopt SHARE_HISTORY             # Share history between all sessions
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history
+setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again
+setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate
+setopt HIST_FIND_NO_DUPS         # Do not display a previously found event
+setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space
+setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file
+setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
+setopt HIST_FIND_NO_DUPS
+setopt APPEND_HISTORY
+setopt GLOBDOTS                  # Complete dotfiles
+_comp_options+=(globdots)
+
+#############
+# Vim Keybindings
+############
+# bindkey -v
+# export KEYTIMEOUT=1
+# zmodload zsh/complist
+# bindkey -M menuselect 'h' vi-backward-char
+# bindkey -M menuselect 'k' vi-up-line-or-history
+# bindkey -M menuselect 'l' vi-forward-char
+# bindkey -M menuselect 'j' vi-down-line-or-history
+# autoload -Uz edit-command-line
+# zle -N edit-command-line
+# bindkey -M vicmd v edit-command-line
+# autoload -Uz select-bracketed select-quoted
+# zle -N select-quoted
+# zle -N select-bracketed
+# for km in viopp visual; do
+#   bindkey -M $km -- '-' vi-up-line-or-history
+#   for c in {a,i}${(s..)^:-\'\"\`\|,./:;=+@}; do
+#     bindkey -M $km $c select-quoted
+#   done
+#   for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+#     bindkey -M $km $c select-bracketed
+#   done
+# done
+# autoload -Uz surround
+# zle -N delete-surround surround
+# zle -N add-surround surround
+# zle -N change-surround surround
+# bindkey -M vicmd cs change-surround
+# bindkey -M vicmd ds delete-surround
+# bindkey -M vicmd ys add-surround
+# bindkey -M visual S add-surround
+# # emacs
+#
+# bindkey "^A" beginning-of-line
+# bindkey "^E" end-of-line
+# bindkey "^K" kill-line
+# bindkey "^L" clear-screen
+# bindkey "^R" history-incremental-search-backward
+# bindkey "^U" kill-whole-line
+# bindkey "^W" backward-kill-word
+# bindkey "^Y" yank
+# bindkey "^F" forward-char
+# bindkey "^[f" forward-word
+# bindkey "^[b" backward-word
+# bindkey "^[d" kill-word
+# bindkey "^[D" delete-char
+
+
+#############
+# Emacs Keybindings
+############
+bindkey -e
+
+#############
+# Antidote
+#############
+if ! [ -d "$ZDOTDIR/antidote" ]; then
+  git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
+fi
+zstyle ':antidote:bundle:*' zcompile 'yes'
+zstyle ':antidote:bundle' use-friendly-names 'yes'
+autoload -Uz compinit; compinit
+zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins
+
+[[ -f ${zsh_plugins}.txt ]] || touch ${zsh_plugins}.txt
+
+fpath=($ANTIDOTE_HOME/functions $fpath)
+autoload -Uz antidote
+
+if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
+  antidote bundle <${zsh_plugins}.txt >|${zsh_plugins}.zsh
+fi
+
+source ${zsh_plugins}.zsh
+bindkey '^[[A' history-substring-search-up # or '\eOA'
+bindkey '^[[B' history-substring-search-down # or '\eOB'
+bindkey '^P' history-search-backward 
+bindkey '^N' history-search-forward 
+#############
+# My Configs
+#############
+
+if [ -d "$ZDOTDIR/zshrc.d/" ]; then
+  for rc in $ZDOTDIR/zshrc.d/*; do
+    if [ -f "$rc" ]; then
+      . "$rc"
+    fi
+  done
+fi
+unset rc
+
+alias d='dirs -v'
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
+bindkey '^ ' autosuggest-accept
+bindkey              '^I'         menu-complete
+bindkey "$terminfo[kcbt]" reverse-menu-complete
+bindkey              '^I' menu-select
+bindkey "$terminfo[kcbt]" menu-select
+bindkey -M menuselect              '^I'         menu-complete
+bindkey -M menuselect "$terminfo[kcbt]" reverse-menu-complete
+bindkey -M menuselect  '^[[D' .backward-char  '^[OD' .backward-char
+bindkey -M menuselect  '^[[C'  .forward-char  '^[OC'  .forward-char
+bindkey -M menuselect '^M' .accept-line
+#############
+# Powerlevel10k
+#############
+# For autosuggest-partial-accpet to work
+export WORDCHARS=${WORDCHARS/\/}
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh

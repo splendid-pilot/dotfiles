@@ -1,0 +1,5 @@
+# .bash_profile
+#
+if [ -f /home/theo/.config/bash/.bashrc ]; then
+  . /home/theo/.config/bash/.bashrc
+fi

@@ -1,0 +1,7 @@
+*.bak
+.git
+.github
+.idea
+.vscode
+target
+.godot

@@ -1,0 +1,9 @@
+symlink-arrow: 
+ignore-globs:
+  - .git
+  - desktop.ini
+  - NTUSER.*
+  - ntuser.*
+  - IntelGraphicsProfiles
+  - "Local Settings"
+  - NetHood

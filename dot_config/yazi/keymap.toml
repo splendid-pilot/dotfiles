@@ -1,0 +1,80 @@
+[manager]
+prepend_keymap = [
+  { on = [
+    "l",
+  ], run = "plugin --sync smart-enter", desc = "Enter the child directory, or open the file" },
+  { on = [
+    "<C-s>",
+  ], run = 'shell "$SHELL" --block --confirm', desc = "Open shell here" },
+  { on = [
+    "p",
+  ], run = "plugin --sync smart-paste", desc = "Paste into the hovered directory or CWD" },
+  { on = [
+    "y",
+  ], run = [
+    "yank",
+    '''
+	shell --confirm 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list'
+''',
+  ] },
+  { on = [
+    "y",
+  ], run = [
+    "yank",
+    '''
+	shell --confirm 'echo "$@" | xclip -i -selection clipboard -t text/uri-list'
+''',
+  ] },
+  { on = [
+    "T",
+  ], run = "plugin --sync max-preview" },
+  { on = [
+    "U",
+  ], run = "plugin --sync hide-preview" },
+  { on = [
+    "k",
+  ], run = "plugin --sync arrow --args=-1" },
+  { on = [
+    "j",
+  ], run = "plugin --sync arrow --args=1" },
+  { on = [
+    "K",
+  ], run = "plugin --sync parent-arrow --args=-1" },
+  { on = [
+    "J",
+  ], run = "plugin --sync parent-arrow --args=1" },
+  { on = [
+    "F",
+    "g",
+  ], run = "plugin fg", desc = "find file by content" },
+  { on = [
+    "F",
+    "f",
+  ], run = "plugin fg --args='fzf'", desc = "find file by file name" },
+]
+append_keymap = [
+  { on = [
+    "g",
+    "b",
+  ], run = "cd ~/.config/bash", desc = "Go bash configuration directory", for = "unix" },
+  { on = [
+    "g",
+    "z",
+  ], run = "cd ~/.config/zsh", desc = "Go to zsh configuration directory", for = "unix" },
+  { on = [
+    "g",
+    "l",
+  ], run = "cd ~/.local/share", desc = "Go to the local share directory", for = "unix" },
+  { on = [
+    "g",
+    "p",
+  ], run = "cd ~/Projects", desc = "Go to the local share directory", for = "unix" },
+  { on = [
+    "g",
+    "f",
+  ], run = "cd ~/.config/fish", desc = "Go to fish configuration directory", for = "unix" },
+  { on = [
+    "g",
+    "n",
+  ], run = "cd ~/.config/nvim", desc = "Go to nvim configuration directory", for = "unix" },
+]

@@ -1,0 +1,9 @@
+README.md
+{{ if ne .machine "linux-wsl"}}
+.profile
+{{ end}}
+{{ if ne .machine "linux-fedora"}}
+.bash_profile
+.config/{bash,kitty}
+.config/nvim/lua/plugins/kitty-scrollback.lua
+{{ end}}

@@ -1,0 +1,28 @@
+{{- $machine := .chezmoi.os -}}
+{{- $distro := "" -}}
+{{- if eq $machine "linux" -}}
+  {{-  if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+    {{- $distro = "-wsl" -}}
+  {{- else -}}
+    {{- $distro = printf "-%s" .chezmoi.osRelease.id -}}
+  {{- end -}}
+{{- end -}}
+{{- $machine = printf "%s%s" .chezmoi.os $distro -}}
+[git]
+autoCommit = false
+[diff]
+command = "difft"
+args = [
+  "--ignore-comments",
+  "--display",
+  "side-by-side-show-both",
+  "--skip-unchanged",
+  "{{ "{{"  }} .Destination {{"}}" }}",
+  "{{ "{{" }} .Target {{ "}}" }}",
+]
+[data]
+machine = "{{$machine}}"
+{{ if eq $machine  "windows" -}}
+[cd]
+command = "pwsh"
+{{ end -}}
