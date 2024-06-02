@@ -28,6 +28,7 @@ local plug_map = {
   ["n|cn"] = map_cmd("*``cgn"):with_noremap():with_desc("search: search and replace word under cursor"),
   ["n|<leader>e"] = map_cr("lua vim.diagnostic.open_float()"):with_noremap():with_desc("Open diagnostic"):with_silent(),
   ["n|<leader>fx"] = map_cr("!chmod u+x %"):with_noremap():with_desc("Make file executable"):with_silent(),
+  ["n|0"] = map_cmd("^"):with_noremap():with_desc("Move to the beginning of line"):with_silent(),
 
   -- command-line mode
   ["c|<C-b>"] = map_cmd("<Left>"):with_noremap():with_desc("edit: Left"),
@@ -81,7 +82,15 @@ local plug_map = {
   ["n|<A-7>"] = map_cr("BufferLineGoToBuffer 7"):with_noremap():with_silent():with_desc("buffer: Goto buffer 7"),
   ["n|<A-8>"] = map_cr("BufferLineGoToBuffer 8"):with_noremap():with_silent():with_desc("buffer: Goto buffer 8"),
   ["n|<A-9>"] = map_cr("BufferLineGoToBuffer 9"):with_noremap():with_silent():with_desc("buffer: Goto buffer 9"),
-
+  ["n|<leader>bf"] = map_cr("BufferLinePick"):with_noremap():with_silent():with_desc("buffer: Pick buffer"),
+  ["n|<leader>bF"] = map_cr("BufferLinePickClose")
+    :with_noremap()
+    :with_silent()
+    :with_desc("buffer: Pick buffer to close"),
+  ["n|<leader>bs"] = map_cr("BufferLineSortByDirectory")
+    :with_noremap()
+    :with_silent()
+    :with_desc("buffer: Sort buffer by tabs"),
   -- telescope
   ["n|<leader>fd"] = map_cu("Telescope persisted"):with_noremap():with_silent():with_desc("find: Session"),
   ["n|<leader>fr"] = map_callback(function()
@@ -127,11 +136,11 @@ local plug_map = {
     :with_silent(),
 
   -- Plugin: hop.nvim
-  ["nv|<leader>w"] = map_cmd("<Cmd>HopWordMW<CR>"):with_noremap():with_desc("jump: Goto word"),
-  ["nv|<leader>j"] = map_cmd("<Cmd>HopLineMW<CR>"):with_noremap():with_desc("jump: Goto line"),
-  ["nv|<leader>k"] = map_cmd("<Cmd>HopLineMW<CR>"):with_noremap():with_desc("jump: Goto line"),
-  ["nv|<leader>c"] = map_cmd("<Cmd>HopChar1MW<CR>"):with_noremap():with_desc("jump: Goto one char"),
-  ["nv|<leader>C"] = map_cmd("<Cmd>HopChar2MW<CR>"):with_noremap():with_desc("jump: Goto two chars"),
+  ["nv|<leader>hw"] = map_cmd("<Cmd>HopWordMW<CR>"):with_noremap():with_desc("jump: Goto word"),
+  ["nv|<leader>hj"] = map_cmd("<Cmd>HopLineMW<CR>"):with_noremap():with_desc("jump: Goto line"),
+  ["nv|<leader>hk"] = map_cmd("<Cmd>HopLineMW<CR>"):with_noremap():with_desc("jump: Goto line"),
+  ["nv|<leader>hc"] = map_cmd("<Cmd>HopChar1MW<CR>"):with_noremap():with_desc("jump: Goto one char"),
+  ["nv|<leader>hC"] = map_cmd("<Cmd>HopChar2MW<CR>"):with_noremap():with_desc("jump: Goto two chars"),
 
   -- Plugin: nvim-spectre
   ["n|<leader>sp"] = map_callback(function()

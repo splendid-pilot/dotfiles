@@ -25,5 +25,6 @@ settings["neovide_config"] = {
   cursor_vfx_particle_lifetime = 1.2,
   scale_factor = 1.0,
   hide_mouse_when_typing = true,
+  remember_window_size = false,
 }
 return settings
