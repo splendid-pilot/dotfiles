@@ -1,6 +1,5 @@
 symlink-arrow: 
 ignore-globs:
-  - .git
   - desktop.ini
   - NTUSER.*
   - ntuser.*

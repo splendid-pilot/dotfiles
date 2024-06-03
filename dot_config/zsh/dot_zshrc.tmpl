@@ -83,7 +83,9 @@ _comp_options+=(globdots)
 # Emacs Keybindings
 ############
 bindkey -e
-
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
 #############
 # Antidote
 #############
@@ -147,5 +149,7 @@ fi
 #############
 # For autosuggest-partial-accpet to work
 export WORDCHARS=${WORDCHARS/\/}
+export WORDCHARS=${WORDCHARS/-}
+export WORDCHARS=${WORDCHARS/.}
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
