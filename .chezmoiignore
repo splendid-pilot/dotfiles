@@ -7,3 +7,14 @@ README.md
 .config/{bash,kitty}
 .config/nvim/lua/plugins/kitty-scrollback.lua
 {{ end}}
+{{ if eq .machine "windows" }}
+.zshenv
+.local/
+.config/**
+!.config/nvim/
+.bashrc
+AppData/**
+{{ end }}
+{{ if ne .machine "windows" }}
+*.ps1
+{{end}}
