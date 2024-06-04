@@ -33,7 +33,7 @@ return {
     -- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
     delete_to_trash = true,
     -- Skip the confirmation popup for simple operations (:help oil.skip_confirm_for_simple_edits)
-    skip_confirm_for_simple_edits = false,
+    skip_confirm_for_simple_edits = true,
     -- Selecting a new/moved/renamed file or directory will prompt you to save changes first
     -- (:help prompt_save_on_select_new_entry)
     prompt_save_on_select_new_entry = true,
@@ -91,7 +91,6 @@ return {
         local hidden_files = {
           ".git",
           ".github",
-          "..",
           -- Add any other hidden files or directories you want to exclude
         }
         return vim.tbl_contains(hidden_files, name)

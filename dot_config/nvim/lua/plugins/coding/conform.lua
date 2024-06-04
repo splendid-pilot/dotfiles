@@ -5,6 +5,7 @@ return {
       zsh = { "shfmt" },
       bash = { "shfmt" },
       typst = { "typstfmt" },
+      tex = { "latexindent" },
     },
 
     formatters = {

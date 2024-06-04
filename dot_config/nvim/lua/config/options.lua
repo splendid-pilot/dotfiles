@@ -6,13 +6,16 @@ vim.g.commentstring = "# %s"
 vim.g.is_linux = os_name == "Linux"
 vim.g.is_wsl = vim.fn.has("wsl") == 1
 vim.g.is_windows = os_name == "Windows_NT"
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
 -- options
 vim.opt.shortmess:append({ s = true, c = true })
 vim.opt.swapfile = false
 vim.opt.wildignore =
   ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**,*.7z,*.tar.gz, __pycache__"
 vim.opt.wildignorecase = true
-
+vim.opt.spelllang = "en_us,cjk"
 -- wsl specific settings
 if vim.g.is_wsl then
   vim.g.clipboard = {
