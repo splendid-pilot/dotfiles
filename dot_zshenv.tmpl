@@ -82,6 +82,9 @@ paths=(
   {{ if eq .machine "linux-wsl" -}}
   "/home/theo/.nvm/versions/node/v20.12.2/bin"
   {{- end }}
+  {{- if eq .machine "linux-fedora" -}}
+  "/home/theo/Programs/miktex/bin"
+  {{- end }}
 )
 
 for entry in "${paths[@]}"; do
