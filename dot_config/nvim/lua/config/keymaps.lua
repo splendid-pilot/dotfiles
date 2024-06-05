@@ -26,7 +26,10 @@ local plug_map = {
   ["n|<A-q>"] = map_cr("q!"):with_desc("edit: Force quit"):with_silent():with_noremap(),
   ["n|<c-n>"] = map_cmd("*``"):with_noremap():with_desc("search: search word under cursor"),
   ["n|cn"] = map_cmd("*``cgn"):with_noremap():with_desc("search: search and replace word under cursor"),
-  ["n|<leader>e"] = map_cr("lua vim.diagnostic.open_float()"):with_noremap():with_desc("Open diagnostic"):with_silent(),
+  ["n|<leader>e"] = map_cr("lua vim.diagnostic.open_float();vim.diagnostic.config({virtual_text=false})")
+    :with_noremap()
+    :with_desc("Open diagnostic")
+    :with_silent(),
   ["n|<leader>fx"] = map_cr("!chmod u+x %"):with_noremap():with_desc("Make file executable"):with_silent(),
   ["n|0"] = map_cmd("^"):with_noremap():with_desc("Move to the beginning of line"):with_silent(),
 

@@ -23,8 +23,9 @@ return {
     },
     lsp = {
       signature = {
+        enabled = false,
         auto_open = {
-          enabled = false,
+          enabled = true,
         },
       },
     },

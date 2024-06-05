@@ -1,24 +1,15 @@
 return {
   "neovim/nvim-lspconfig",
-  opts = {
-    diagnostics = {
+  opts = function(_, opts)
+    opts.diagnostics = {
       virtual_text = false,
-    },
-    setup = {
+    }
+    opts.setup = {
       rust_analyzer = function()
         return true
       end,
-    },
-    servers = {
-      -- tinymist = {
-      --   single_file_support = true,
-      --   root_dir = function()
-      --     return vim.fn.getcwd()
-      --   end,
-      --   settings = {
-      --     exportPdf = "onSave",
-      --   },
-      -- },
+    }
+    opts.servers = {
       lua_ls = {
         settings = {
           Lua = {
@@ -28,6 +19,6 @@ return {
           },
         },
       },
-    },
-  },
+    }
+  end,
 }

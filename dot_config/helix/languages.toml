@@ -1,0 +1,25 @@
+[[language]]
+name = "go"
+auto-format = true
+formatter = { command = "goimports" }
+[[language]]
+name = "rust"
+
+[language.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+'<' = '>'
+[language-server.rust-analyzer.config.check]
+command = "clippy"
+[[language]]
+name = "toml"
+formatter = { command = "taplo", args = ["fmt", "-"] }
+
+[language-server.texlab.config.texlab.build]
+executable = "xelatex"
+onSave = false
+[language-server.texlab.config.texlab.chktex]
+onOpenAndSave = true
