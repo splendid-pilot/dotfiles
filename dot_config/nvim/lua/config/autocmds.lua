@@ -42,5 +42,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     require("lsp_signature").on_attach({
       -- ... setup options here ...
     }, bufnr)
+    vim.diagnostic.config({ virtual_text = false })
   end,
 })

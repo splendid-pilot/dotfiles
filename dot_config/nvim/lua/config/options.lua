@@ -16,6 +16,9 @@ vim.opt.wildignore =
   ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**,*.7z,*.tar.gz, __pycache__"
 vim.opt.wildignorecase = true
 vim.opt.spelllang = "en_us,cjk"
+vim.diagnostic.config({
+  virtual_text = false,
+})
 -- wsl specific settings
 if vim.g.is_wsl then
   vim.g.clipboard = {
