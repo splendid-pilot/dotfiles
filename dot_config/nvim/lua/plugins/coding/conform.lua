@@ -6,6 +6,7 @@ return {
       bash = { "shfmt" },
       typst = { "typstfmt" },
       tex = { "latexindent" },
+      taplo = { "taplo" },
     },
 
     formatters = {
