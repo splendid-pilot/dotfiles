@@ -59,7 +59,7 @@ local plug_map = {
   end):with_expr(),
 
   -- nvim-tree
-  ["n|<leader>."] = map_cr("NvimTreeToggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
+  -- ["n|<leader>."] = map_cr("NvimTreeToggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
 
   -- smart-splits
   ["n|<A-h>"] = map_cu("SmartResizeLeft"):with_silent():with_noremap():with_desc("window: Resize -3 horizontally"),
