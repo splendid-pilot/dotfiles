@@ -1,9 +1,6 @@
 return {
   "folke/noice.nvim",
   opts = {
-    -- cmdline = {
-    --   view = "cmdline",
-    -- },
     messages = {
       view = "mini",
     },
@@ -20,12 +17,19 @@ return {
         },
         opts = { skip = true },
       },
+      {
+        filter = {
+          event = "notify",
+          find = "No information available",
+        },
+        opts = { skip = true },
+      },
     },
     lsp = {
       signature = {
         enabled = false,
         auto_open = {
-          enabled = true,
+          enabled = false,
         },
       },
     },

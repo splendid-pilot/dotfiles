@@ -8,7 +8,7 @@ return {
   keys = {
     -- 👇 in this section, choose your own keymappings!
     {
-      "<leader>-",
+      "<leader>f-",
       function()
         require("yazi").yazi()
       end,

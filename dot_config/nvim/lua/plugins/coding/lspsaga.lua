@@ -2,6 +2,7 @@ return {
   "nvimdev/lspsaga.nvim",
   event = "LspAttach",
   lazy = true,
+  enabled = true,
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
     require("utils").gen_lspkind_hl()

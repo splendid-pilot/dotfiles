@@ -15,6 +15,7 @@ local cmp = {
 }
 return {
   "LunarVim/bigfile.nvim",
+  lazy = false,
   opts = {
     filesize = 1,
     pattern = { "*" },
@@ -25,6 +26,10 @@ return {
       "vimopts",
       ftdetect,
       cmp,
+      "indent_blankline",
+      "illuminate",
+      "matchparen",
+      "filetype",
     },
   },
 }
