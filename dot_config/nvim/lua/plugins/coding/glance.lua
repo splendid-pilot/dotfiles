@@ -2,7 +2,7 @@ return {
   "dnlhc/glance.nvim",
   lazy = true,
   event = "LspAttach",
-  enabled = false,
+  enabled = true,
   config = function()
     local icons = { ui = require("utils.icons").get("ui", true) }
     local actions = require("glance").actions

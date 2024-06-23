@@ -49,7 +49,6 @@ local plug_map = {
   ["c|<C-k>"] = map_cmd([[<C-\>estrpart(getcmdline(),0,getcmdpos()-1) <CR>]])
     :with_noremap()
     :with_desc("edit: kill to end of the line"),
-
   -- Plugin accelerated-jk
   ["n|j"] = map_callback(function()
     return et("<Plug>(accelerated_jk_gj)")
@@ -94,49 +93,50 @@ local plug_map = {
     :with_noremap()
     :with_silent()
     :with_desc("buffer: Sort buffer by tabs"),
+
   -- telescope
-  ["n|<leader>fd"] = map_cu("Telescope persisted"):with_noremap():with_silent():with_desc("find: Session"),
-  ["n|<leader>fr"] = map_callback(function()
-      require("telescope").extensions.frecency.frecency({})
-    end)
-    :with_noremap()
-    :with_silent()
-    :with_desc("find: File by frecency"),
-  ["n|<leader>fu"] = map_callback(function()
-      require("telescope").extensions.undo.undo()
-    end)
-    :with_noremap()
-    :with_silent()
-    :with_desc("edit: Show undo history"),
-  ["n|<leader>fw"] = map_cu("Telescope grep_string")
-    :with_noremap()
-    :with_silent()
-    :with_desc("Telescope: grep word under cursor"),
-  ["n|<leader>fB"] = map_cu("Telescope file_browser path=%:p:h select_buffer=true")
-    :with_noremap()
-    :with_silent()
-    :with_desc("Telescope: File brwoser (cwd)"),
-  ["n|<leader>fz"] = map_cu("Telescope zoxide list"):with_noremap():with_silent():with_desc("Telescope: zoxide"),
-  ["n|<leader>fc"] = map_callback(function()
-      require("telescope").extensions.file_browser.file_browser({
-        -- cwd = vim.fn.stdpath("config") .. "/lua/",
-        cwd = vim.fn.stdpath("config"),
-        depth = false,
-        grouped = true,
-        add_dirs = false,
-        mappings = {
-          ["n"] = {
-            ["<C-B>"] = require("telescope.actions").preview_scrolling_left,
-          },
-          ["i"] = {
-            ["<C-B>"] = require("telescope.actions").preview_scrolling_left,
-          },
-        },
-      })
-    end)
-    :with_desc("Telescope: Find Conifg File")
-    :with_noremap()
-    :with_silent(),
+  -- ["n|<leader>fd"] = map_cu("Telescope persisted"):with_noremap():with_silent():with_desc("find: Session"),
+  -- ["n|<leader>fr"] = map_callback(function()
+  --     require("telescope").extensions.frecency.frecency({})
+  --   end)
+  --   :with_noremap()
+  --   :with_silent()
+  --   :with_desc("find: File by frecency"),
+  -- ["n|<leader>fu"] = map_callback(function()
+  --     require("telescope").extensions.undo.undo()
+  --   end)
+  --   :with_noremap()
+  --   :with_silent()
+  --   :with_desc("edit: Show undo history"),
+  -- ["n|<leader>fw"] = map_cu("Telescope grep_string")
+  --   :with_noremap()
+  --   :with_silent()
+  --   :with_desc("Telescope: grep word under cursor"),
+  -- ["n|<leader>fB"] = map_cu("Telescope file_browser path=%:p:h select_buffer=true")
+  --   :with_noremap()
+  --   :with_silent()
+  --   :with_desc("Telescope: File brwoser (cwd)"),
+  -- ["n|<leader>fz"] = map_cu("Telescope zoxide list"):with_noremap():with_silent():with_desc("Telescope: zoxide"),
+  -- ["n|<leader>fc"] = map_callback(function()
+  --     require("telescope").extensions.file_browser.file_browser({
+  --       -- cwd = vim.fn.stdpath("config") .. "/lua/",
+  --       cwd = vim.fn.stdpath("config"),
+  --       depth = false,
+  --       grouped = true,
+  --       add_dirs = false,
+  --       mappings = {
+  --         ["n"] = {
+  --           ["<C-B>"] = require("telescope.actions").preview_scrolling_left,
+  --         },
+  --         ["i"] = {
+  --           ["<C-B>"] = require("telescope.actions").preview_scrolling_left,
+  --         },
+  --       },
+  --     })
+  --   end)
+  --   :with_desc("Telescope: Find Conifg File")
+  --   :with_noremap()
+  --   :with_silent(),
 
   -- Plugin: hop.nvim
   ["nv|<leader>hw"] = map_cmd("<Cmd>HopWordMW<CR>"):with_noremap():with_desc("jump: Goto word"),
@@ -260,3 +260,7 @@ if vim.g.neovide then
   bind.nvim_load_mapping(neovide_map)
 end
 bind.nvim_load_mapping(plug_map)
+vim.keymap.del("t", "<C-h>")
+vim.keymap.del("t", "<C-l>")
+vim.keymap.del("t", "<C-k>")
+vim.keymap.del("t", "<C-j>")

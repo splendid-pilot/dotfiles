@@ -19,9 +19,9 @@ function mapping.lsp(buf)
     --   :with_silent()
     --   :with_buffer(buf)
     --   :with_desc("lsp: Rename in project range"),
-    -- ["nv|ga"] = map_cr("Lspsaga code_action"):with_silent():with_buffer(buf):with_desc("lsp: Code action for cursor"),
+    ["nv|ga"] = map_cr("Lspsaga code_action"):with_silent():with_buffer(buf):with_desc("lsp: Code action for cursor"),
     -- ["nv|<C-S-k>"] = map_cr("Lspsaga peek_definition"):with_silent():with_buffer(buf):with_desc("lsp: Peek definition"),
-    -- ["n|gh"] = map_cr("Glance references"):with_silent():with_buffer(buf):with_desc("lsp: Show reference"),
+    ["n|gh"] = map_cr("Glance references"):with_silent():with_buffer(buf):with_desc("lsp: Show reference"),
     -- ["n|gm"] = map_cr("Glance implementations"):with_silent():with_buffer(buf):with_desc("lsp: Show implementation"),
   }
 
