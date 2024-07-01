@@ -1,15 +1,15 @@
 return {
   "neovim/nvim-lspconfig",
-  opts = function(_, opts)
-    opts.diagnostics = {
+  opts = {
+    diagnostics = {
       virtual_text = false,
-    }
-    opts.setup = {
+    },
+    setup = {
       rust_analyzer = function()
         return true
       end,
-    }
-    opts.servers = {
+    },
+    servers = {
       lua_ls = {
         settings = {
           Lua = {
@@ -20,6 +20,6 @@ return {
         },
       },
       dartls = {},
-    }
-  end,
+    },
+  },
 }
