@@ -173,6 +173,49 @@ local plug_map = {
   -- Plugin Oil.nvim
   ["n|-"] = map_cr("Oil"):with_silent():with_noremap():with_desc("Oil"),
 
+  --telescope
+  ["n|<leader>fd"] = map_cu("Telescope persisted"):with_noremap():with_silent():with_desc("find: Session"),
+  ["n|<leader>fr"] = map_callback(function()
+      require("telescope").extensions.frecency.frecency({})
+    end)
+    :with_noremap()
+    :with_silent()
+    :with_desc("find: File by frecency"),
+  ["n|<leader>fu"] = map_callback(function()
+      require("telescope").extensions.undo.undo()
+    end)
+    :with_noremap()
+    :with_silent()
+    :with_desc("edit: Show undo history"),
+  ["n|<leader>fw"] = map_cu("Telescope grep_string")
+    :with_noremap()
+    :with_silent()
+    :with_desc("Telescope: grep word under cursor"),
+  ["n|<leader>fB"] = map_cu("Telescope file_browser path=%:p:h select_buffer=true")
+    :with_noremap()
+    :with_silent()
+    :with_desc("Telescope: File brwoser (cwd)"),
+  ["n|<leader>fz"] = map_cu("Telescope zoxide list"):with_noremap():with_silent():with_desc("Telescope: zoxide"),
+  ["n|<leader>fc"] = map_callback(function()
+      require("telescope").extensions.file_browser.file_browser({
+        cwd = vim.fn.stdpath("config"),
+        depth = false,
+        grouped = true,
+        add_dirs = false,
+        mappings = {
+          ["n"] = {
+            ["<C-B>"] = require("telescope.actions").preview_scrolling_left,
+          },
+          ["i"] = {
+            ["<C-B>"] = require("telescope.actions").preview_scrolling_left,
+          },
+        },
+      })
+    end)
+    :with_desc("Telescope: Find Conifg File")
+    :with_noremap()
+    :with_silent(),
+
   -- Plugin zen-mode.nvim
   ["n|<leader>uz"] = map_callback(function()
       if vim.g.is_zen == nil or vim.g.is_zen == false then

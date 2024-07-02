@@ -1,6 +1,7 @@
 return {
   "akinsho/toggleterm.nvim",
   lazy = true,
+  cond = vim.g.neovide,
   cmd = {
     "ToggleTerm",
     "ToggleTermSetName",
