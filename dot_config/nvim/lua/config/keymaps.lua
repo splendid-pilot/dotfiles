@@ -60,6 +60,15 @@ local plug_map = {
   -- nvim-tree
   -- ["n|<leader>."] = map_cr("NvimTreeToggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
 
+  -- dropbar.nvim
+
+  ["n|<leader>fa"] = map_callback(function()
+      require("dropbar.api").pick()
+    end)
+    :with_noremap()
+    :with_silent()
+    :with_desc("Pick dropbar"),
+
   -- smart-splits
   ["n|<A-h>"] = map_cu("SmartResizeLeft"):with_silent():with_noremap():with_desc("window: Resize -3 horizontally"),
   ["n|<A-'>"] = map_cu("SmartResizeDown"):with_silent():with_noremap():with_desc("window: Resize -3 vertically"),

@@ -3,13 +3,20 @@ return {
   lazy = true,
   ft = "norg",
   version = "*",
-  dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-neorg/neorg-telescope" } },
+  dependencies = {
+    { "nvim-lua/plenary.nvim" },
+    { "nvim-neorg/neorg-telescope" },
+    { "nvim-treesitter/nvim-treesitter" },
+  },
   opts = function(_, opts)
     opts.load = {
       ["core.defaults"] = {},
       ["core.concealer"] = {
         config = {
           icon_preset = "varied",
+          icons = {
+            code_block = { content_only = true, conceal = true, width = "content", nodes = { "ranged_verbatim_tag" } },
+          },
         },
       },
       ["core.completion"] = {

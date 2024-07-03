@@ -19,6 +19,19 @@ return {
       },
       {
         filter = {
+          find = "Finding",
+        },
+        opts = { skip = true },
+      },
+      {
+        filter = {
+          event = "notify",
+          find = "^{%s*%d+%s*",
+        },
+        opts = { skip = true },
+      },
+      {
+        filter = {
           event = "notify",
           find = "No information available",
         },

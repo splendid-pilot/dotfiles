@@ -1,5 +1,11 @@
 return {
   "hrsh7th/nvim-cmp",
+  dependencies = {
+    { "lukas-reineke/cmp-under-comparator" },
+    { "f3fora/cmp-spell" },
+    { "hrsh7th/cmp-buffer" },
+    { "kdheepak/cmp-latex-symbols" },
+  },
   ---@param opts cmp.ConfigSchema
   opts = function(_, opts)
     local has_words_before = function()
@@ -9,7 +15,44 @@ return {
     end
 
     local cmp = require("cmp")
-    table.insert(opts.sources, { name = "neorg" })
+    local compare = require("cmp.config.compare")
+    table.insert(opts.sources, #opts.sources + 1, {
+      name = "neorg",
+    })
+    table.insert(opts.sources, #opts.sources + 1, {
+      name = "spell",
+    })
+    table.insert(opts.sources, #opts.sources + 1, {
+      name = "latex_symbols",
+    })
+
+    compare.lsp_scores = function(entry1, entry2)
+      local diff
+      if entry1.completion_item.score and entry2.completion_item.score then
+        diff = (entry2.completion_item.score * entry2.score) - (entry1.completion_item.score * entry1.score)
+      else
+        diff = entry2.score - entry1.score
+      end
+      return (diff < 0)
+    end
+    opts.sorting = {
+      priority_weight = 2,
+      comparators = {
+        -- require("cmp_tabnine.compare"),
+        compare.offset, -- Items closer to cursor will have lower priority
+        compare.exact,
+        -- compare.scopes,
+        compare.lsp_scores,
+        compare.sort_text,
+        compare.score,
+        compare.recently_used,
+        -- compare.locality, -- Items closer to cursor will have higher priority, conflicts with `offset`
+        require("cmp-under-comparator").under,
+        compare.kind,
+        compare.length,
+        compare.order,
+      },
+    }
     opts.mapping = vim.tbl_extend("force", opts.mapping, {
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
