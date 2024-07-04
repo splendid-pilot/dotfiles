@@ -49,15 +49,5 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 
-(package! just-mode)
 
-(package! rime)
-
-;; (package! saveplace-pdf-view)
-
-(package! saveplace-pdf-view
-  :recipe (:host github :repo "nicolaisingh/saveplace-pdf-view"
-           :files ("*.el" )))
-
-(package! consult-gh
-  :recipe (:host github :repo "armindarvish/consult-gh" :branch "main"))
+(package! flymake-ruff)

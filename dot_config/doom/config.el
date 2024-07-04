@@ -1,3 +1,5 @@
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
@@ -19,7 +21,8 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 18))
+;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
+;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -30,6 +33,14 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-tokyo-night)
+
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 18 :weight 'bold))
+(setq doom-themes-enable-bold t
+      doom-themes-enable-italic t)
+(set-face-attribute 'font-lock-comment-face nil :foreground "#5B6268" :slant 'italic :family "VictorMono Nerd Font")
+
+;; (set-face-attribute 'font-lock-function-name-face nil :foreground "#c678dd" :slant 'italic :family "VictorMono Nerd Font")
+;; (set-face-attribute 'font-lock-variable-name-face nil :foreground "#dcaeea" :slant 'italic :family "VictorMono Nerd Font")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -48,7 +59,8 @@
 ;;
 ;; The exceptions to this rule:
 ;;
-;;   - Setting file/directory variables (like `org-directory') - Setting variables which explicitly tell you to set them before their
+;;   - Setting file/directory variables (like `org-directory')
+;;   - Setting variables which explicitly tell you to set them before their
 ;;     package is loaded (see 'C-h v VARIABLE' to look up their documentation).
 ;;   - Setting doom variables (which start with 'doom-' or '+').
 ;;
@@ -70,71 +82,9 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-(after! recentf
-  (run-at-time 100 (* 5 60) 'recentf-save-list)
-  )
 
-(use-package! rime
-  :custom
-  ;; (
-  ;; default-input-method "rime")
-  (setq rime-show-candidate 'posframe)
-  )
-
-(defun rime-evil-escape-advice (orig-fun key)
-  "advice for `rime-input-method' to make it work together with `evil-escape'.
-        Mainly modified from `evil-escape-pre-command-hook'"
-  (if rime--preedit-overlay
-      ;; if `rime--preedit-overlay' is non-nil, then we are editing something, do not abort
-      (apply orig-fun (list key))
-    (when (featurep 'evil-escape)
-      (let (
-            (fkey (elt evil-escape-key-sequence 0))
-            (skey (elt evil-escape-key-sequence 1))
-            )
-        (if (or (char-equal key fkey)
-                (and evil-escape-unordered-key-sequence
-                     (char-equal key skey)))
-            (let ((evt (read-event nil nil evil-escape-delay)))
-              (cond
-               ((and (characterp evt)
-                     (or (and (char-equal key fkey) (char-equal evt skey))
-                         (and evil-escape-unordered-key-sequence
-                              (char-equal key skey) (char-equal evt fkey))))
-                (evil-repeat-stop)
-                (evil-normal-state))
-               ((null evt) (apply orig-fun (list key)))
-               (t
-                (apply orig-fun (list key))
-                (if (numberp evt)
-                    (apply orig-fun (list evt))
-                  (setq unread-command-events (append unread-command-events (list evt))))))
-              )
-          (apply orig-fun (list key)))))))
-
-(advice-add 'rime-input-method :around #'rime-evil-escape-advice)
-(require 'saveplace-pdf-view)
-(save-place-mode 1)
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
-
-(use-package! consult-gh
-  :custom
-  (consult-gh-repo-maxnum 30) ;;set max number of repos to 30
-  (consult-gh-issues-maxnum 100) ;;set max number of issues to 100
-  (consult-gh-show-preview t) ;;show previews
-  (consult-gh-preview-key "M-o") ;;show previews on demand by hitting "M-o"
-  (consult-gh-preview-buffer-mode 'org-mode) ;;show previews in org-mode
-  (consult-gh-repo-action #'consult-gh--repo-browse-files-action) ;;open file tree of repo on selection
-  (consult-gh-issue-action #'consult-gh--issue-view-action) ;;open issues in an emacs buffer
-  (consult-gh-pr-action #'consult-gh--pr-view-action) ;;open pull requests in an emacs buffer
-  (consult-gh-code-action #'consult-gh--code-view-action) ;;open files that contain code snippet in an emacs buffer
-  (consult-gh-file-action #'consult-gh--files-view-action) ;;open files in an emacs buffer
-  (setq! consult-gh-default-clone-directory "~/Files/02_Repo")
+(use-package! flymake-ruff
   :config
-  (add-to-list 'consult-gh-default-orgs-list "splendid-pilot") ;;add your GitHub user
+  (add-hook 'python-mode-hook #'flymake-ruff-load)
   )
-(after! projectile-mode
-  add-to-list 'savehist-additional-variables 'consult-gh--known-orgs-list) ;;keep record of searched orgs
-
-(after! projectile-mode
-  add-to-list 'savehist-additional-variables 'consult-gh--known-repos-list)
