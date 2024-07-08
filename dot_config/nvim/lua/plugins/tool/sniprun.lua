@@ -1,7 +1,7 @@
 return {
   "michaelb/sniprun",
   lazy = true,
-  enabled = not vim.g.is_windows,
+  cond = not vim.g.is_windows,
   build = "bash ./install.sh",
   cmd = { "SnipRun", "SnipReset", "SnipInfo" },
   opts = {

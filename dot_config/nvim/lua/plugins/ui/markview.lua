@@ -5,6 +5,7 @@ return {
   },
   lazy = true,
   ft = "markdown",
+  enabled = false,
   config = function()
     require("markview").setup({
       table = {

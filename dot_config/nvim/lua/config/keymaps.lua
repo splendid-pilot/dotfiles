@@ -1,7 +1,3 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
-
 local bind = require("utils.bind")
 local map_cr = bind.map_cr
 local map_cu = bind.map_cu
@@ -20,6 +16,7 @@ local plug_map = {
   ["i|<C-j>"] = map_cmd("<C-o>o"):with_noremap():with_desc("edit: add a newline below"),
   ["i|<C-S-j>"] = map_cmd("<C-o>O"):with_noremap():with_desc("edit: add a newline above"),
   ["i|<C-s>"] = map_cmd("<Esc>:w<CR>"):with_desc("edit: Save file"):with_noremap(),
+
   -- normal mode
   ["n|<S-Tab>"] = map_cr("normal za"):with_noremap():with_silent():with_desc("edit: Toggle code fold"),
   ["n|<C-q>"] = map_cr("wq"):with_desc("edit: Save file and quit"):with_silent():with_noremap(),
@@ -49,6 +46,7 @@ local plug_map = {
   ["c|<C-k>"] = map_cmd([[<C-\>estrpart(getcmdline(),0,getcmdpos()-1) <CR>]])
     :with_noremap()
     :with_desc("edit: kill to end of the line"),
+
   -- Plugin accelerated-jk
   ["n|j"] = map_callback(function()
     return et("<Plug>(accelerated_jk_gj)")
@@ -57,11 +55,7 @@ local plug_map = {
     return et("<Plug>(accelerated_jk_gk)")
   end):with_expr(),
 
-  -- nvim-tree
-  -- ["n|<leader>."] = map_cr("NvimTreeToggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
-
   -- dropbar.nvim
-
   ["n|<leader>fa"] = map_callback(function()
       require("dropbar.api").pick()
     end)
@@ -103,50 +97,6 @@ local plug_map = {
     :with_silent()
     :with_desc("buffer: Sort buffer by tabs"),
 
-  -- telescope
-  -- ["n|<leader>fd"] = map_cu("Telescope persisted"):with_noremap():with_silent():with_desc("find: Session"),
-  -- ["n|<leader>fr"] = map_callback(function()
-  --     require("telescope").extensions.frecency.frecency({})
-  --   end)
-  --   :with_noremap()
-  --   :with_silent()
-  --   :with_desc("find: File by frecency"),
-  -- ["n|<leader>fu"] = map_callback(function()
-  --     require("telescope").extensions.undo.undo()
-  --   end)
-  --   :with_noremap()
-  --   :with_silent()
-  --   :with_desc("edit: Show undo history"),
-  -- ["n|<leader>fw"] = map_cu("Telescope grep_string")
-  --   :with_noremap()
-  --   :with_silent()
-  --   :with_desc("Telescope: grep word under cursor"),
-  -- ["n|<leader>fB"] = map_cu("Telescope file_browser path=%:p:h select_buffer=true")
-  --   :with_noremap()
-  --   :with_silent()
-  --   :with_desc("Telescope: File brwoser (cwd)"),
-  -- ["n|<leader>fz"] = map_cu("Telescope zoxide list"):with_noremap():with_silent():with_desc("Telescope: zoxide"),
-  -- ["n|<leader>fc"] = map_callback(function()
-  --     require("telescope").extensions.file_browser.file_browser({
-  --       -- cwd = vim.fn.stdpath("config") .. "/lua/",
-  --       cwd = vim.fn.stdpath("config"),
-  --       depth = false,
-  --       grouped = true,
-  --       add_dirs = false,
-  --       mappings = {
-  --         ["n"] = {
-  --           ["<C-B>"] = require("telescope.actions").preview_scrolling_left,
-  --         },
-  --         ["i"] = {
-  --           ["<C-B>"] = require("telescope.actions").preview_scrolling_left,
-  --         },
-  --       },
-  --     })
-  --   end)
-  --   :with_desc("Telescope: Find Conifg File")
-  --   :with_noremap()
-  --   :with_silent(),
-
   -- Plugin: hop.nvim
   ["nv|<leader>hw"] = map_cmd("<Cmd>HopWordMW<CR>"):with_noremap():with_desc("jump: Goto word"),
   ["nv|<leader>hj"] = map_cmd("<Cmd>HopLineMW<CR>"):with_noremap():with_desc("jump: Goto line"),
@@ -161,23 +111,18 @@ local plug_map = {
     :with_silent()
     :with_noremap()
     :with_desc("editn: search&replace current word (project)"),
-
   ["v|<leader>sp"] = map_callback(function()
       require("spectre").open_visual()
     end)
     :with_silent()
     :with_noremap()
     :with_desc("edit: search & replace current word (project)"),
-
   ["n|<leader>sf"] = map_callback(function()
       require("spectre").open_file_search({ select_word = true })
     end)
     :with_silent()
     :with_noremap()
     :with_desc("editn: search & replace current word (file)"),
-
-  -- Plugin suda.vim
-  ["n|<A-s>"] = map_cu("SudaWrite"):with_silent():with_noremap():with_desc("editn: Save file using sudo"),
 
   -- Plugin Oil.nvim
   ["n|-"] = map_cr("Oil"):with_silent():with_noremap():with_desc("Oil"),
@@ -244,11 +189,32 @@ local plug_map = {
     :with_noremap()
     :with_silent()
     :with_desc("Toggle zen-mode"),
-
-  -- Plugin sniprun
-  ["v|<leader>rr"] = map_cr("SnipRun"):with_desc("Run code by range"):with_noremap():with_silent(),
-  ["n|<leader>rr"] = map_cu([[%SnipRun]]):with_desc("Run code by file"):with_noremap():with_silent(),
 }
+
+if not vim.g.is_windows then
+  local linux_map = {
+    -- Plugin suda.vim
+    ["n|<A-s>"] = map_cu("SudaWrite"):with_silent():with_noremap():with_desc("editn: Save file using sudo"),
+
+    -- Plugin sniprun
+    ["v|<leader>rr"] = map_cr("SnipRun"):with_desc("Run code by range"):with_noremap():with_silent(),
+    ["n|<leader>rr"] = map_cu([[%SnipRun]]):with_desc("Run code by file"):with_noremap():with_silent(),
+    -- Plugin yazi.nvim
+    ["n|<leader>f-"] = map_callback(function()
+        require("yazi").yazi()
+      end)
+      :with_desc("Open the yazi")
+      :with_noremap()
+      :with_silent(),
+    ["n|<leader>cw"] = map_callback(function()
+        require("yazi").yazi(nil, vim.fn.getcwd())
+      end)
+      :with_desc("Open the yazi at working dir")
+      :with_noremap()
+      :with_silent(),
+  }
+  bind.nvim_load_mapping(linux_map)
+end
 
 if vim.g.neovide then
   local change_scale_factor = function(delta)
@@ -311,6 +277,7 @@ if vim.g.neovide then
   }
   bind.nvim_load_mapping(neovide_map)
 end
+
 bind.nvim_load_mapping(plug_map)
 vim.keymap.del("t", "<C-h>")
 vim.keymap.del("t", "<C-l>")
