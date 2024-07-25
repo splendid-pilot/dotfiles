@@ -8,10 +8,14 @@ prepend_previewers = [
   { mime = "application/x-tar", run = "ouch" },
   {{ if eq .machine "linux-wsl" -}}
   {  mime = "image/*", run = "noop" },
-  {{- end}}
+  {{- end -}}
   { mime = "application/x-bzip2", run = "ouch" },
   { mime = "application/x-7z-compressed", run = "ouch" },
   { mime = "application/x-rar", run = "ouch" },
   { mime = "application/x-xz", run = "ouch" },
 ]
-append_previewers = [{ name = "*", run = "hexyl" }]
+[opener]
+extract = [
+  { run = 'ouch d -y "%*"', desc = "Extract here with ouch", for = "windows" },
+  { run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
+]

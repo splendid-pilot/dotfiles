@@ -1,6 +1,7 @@
 local os_name = vim.loop.os_uname().sysname
 -- settings
 vim.g.lazyvim_python_lsp = "basedpyright"
+vim.g.lazyvim_python_ruff = "ruff"
 vim.g.sessionoptoins = "buffers,curdir,folds,help,tabpages,winpos,winsize"
 vim.g.commentstring = "# %s"
 vim.g.is_linux = os_name == "Linux"

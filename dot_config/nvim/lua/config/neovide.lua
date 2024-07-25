@@ -26,5 +26,6 @@ settings["neovide_config"] = {
   scale_factor = 1.0,
   hide_mouse_when_typing = true,
   remember_window_size = false,
+  -- fullscreen = true,
 }
 return settings

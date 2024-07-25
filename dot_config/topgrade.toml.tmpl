@@ -286,21 +286,9 @@ no_retry = true
 
 # Additional git repositories to pull
 repos = [
-  # "~/src/*/",
-  # "~/.config/something"
   "~/.config/zsh/antidote/",
-  
+  "~/Repos/*",
   "~/.config/yazi/plugins/*/",
-{{ if eq .machine "linux-fedora"}}
-
-  "~/Files/02_Repo/*/",
-  "~/.config/nvim-dots/",
-  
-{{ end}}
-
-{{ if eq .machine "linux-wsl"}}
-"~/Repos/*"
-{{ end}}
 ]
 
 # Don't pull the predefined git repos
