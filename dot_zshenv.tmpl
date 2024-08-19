@@ -49,7 +49,7 @@ export VISUAL="nvim"
 export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-export MANPATH="${MANPATH-$(manpath)}:/home/theo/.local/npm/share/man:/home/theo/programs/texlive/2024/texmf-dist/doc/man"
+export MANPATH="${MANPATH-$(manpath)}:/home/theo/.local/share/npm/share/man:/home/theo/programs/texlive/2024/texmf-dist/doc/man"
 
 export HISTORY_IGNORE="ls *:ll *:cd *:pwd:exit:history"
 export HISTSIZE=50000
@@ -59,8 +59,8 @@ export HISTCONTROL=ignoreboth
 export HISTDUP=erase
 
 export SBCL_HOME="/home/theo/programs/sbcl/lib/sbcl"
-export GOBIN="/home/theo/.local/go/bin"
-export GOPATH="/home/theo/.local/go"
+export GOBIN="/home/theo/.local/share/go/bin"
+export GOPATH="/home/theo/.local/share/go"
 
 # fzf stuff
 export FZF_CTRL_T_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git --exclude .github"
@@ -72,10 +72,10 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --select-1 --exit-0"
 paths=(
   "/home/theo/.local/bin"
   "/home/theo/Programs/go/bin"
-  "/home/theo/.local/go/bin"
+  "/home/theo/.local/share/go/bin"
   "/usr/local/cuda-12.4/bin"
   "/home/theo/.config/emacs/bin"
-  "/home/theo/.local/npm/bin"
+  "/home/theo/.local/share/npm/bin"
   "/home/theo/.local/share/JetBrains/Toolbox/scripts"
   "/home/linuxbrew/.linuxbrew/bin"
   "/home/linuxbrew/.linuxbrew/sbin"
@@ -85,6 +85,8 @@ paths=(
   {{- end }}
   {{- if eq .machine "linux-fedora" -}}
   "/home/theo/Programs/miktex/bin"
+  "/home/theo/Programs/jdk-19.0.1/bin"
+  "/home/theo/.pub-cache/bin"
   {{- end }}
 )
 

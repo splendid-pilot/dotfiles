@@ -1,4 +1,4 @@
 return {
-	{ "echasnovski/mini.comment", enabled = vim.g.vscode and true or false },
-	{ "echasnovski/mini.pairs", enabled = vim.g.vscode and true or false },
+	{ "echasnovski/mini.comment", cond = vim.g.vscode },
+	{ "echasnovski/mini.pairs", cond = vim.g.vscode },
 }

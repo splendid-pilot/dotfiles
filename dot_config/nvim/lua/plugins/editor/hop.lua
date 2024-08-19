@@ -1,10 +1,11 @@
 return {
-  "smoka7/hop.nvim",
-  lazy = true,
-  version = "*",
-  cmd = { "HopWordMW", "HopLineMW", "HopChar2MW" },
-  event = { "CursorHold", "CursorHoldI" },
-  opts = {
-    keys = "etovxqpdygfblzhckisuran",
-  },
+	"smoka7/hop.nvim",
+	lazy = true,
+	cond = not vim.g.vscode,
+	version = "*",
+	cmd = { "HopWordMW", "HopLineMW", "HopChar2MW" },
+	event = { "CursorHold", "CursorHoldI" },
+	opts = {
+		keys = "etovxqpdygfblzhckisuran",
+	},
 }

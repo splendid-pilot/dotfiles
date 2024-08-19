@@ -1,5 +1,6 @@
 return {
-  "skywind3000/asyncrun.vim",
-  cmd = "AsyncRun",
-  lazy = true,
+	"skywind3000/asyncrun.vim",
+	cmd = "AsyncRun",
+	cond = not vim.g.vscode,
+	lazy = true,
 }

@@ -1,6 +1,7 @@
 return {
-  "jvgrootveld/telescope-zoxide",
-  config = function()
-    require("telescope").load_extension("zoxide")
-  end,
+	"jvgrootveld/telescope-zoxide",
+	cond = not vim.g.vscode,
+	config = function()
+		require("telescope").load_extension("zoxide")
+	end,
 }

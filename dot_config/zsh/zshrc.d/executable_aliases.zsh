@@ -19,6 +19,8 @@ alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 alias cgf='chezmoi git fetch'
 alias cgst='chezmoi git status'
 alias cedit='chezmoi edit'
-help() {
-  "$@" --help 2>&1 | bat -plhelp
-}
+# help() {
+#   "$@" --help 2>&1 | bat -plhelp
+# }
+alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
