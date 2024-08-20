@@ -17,4 +17,8 @@ AppData/**
 {{ end }}
 {{ if ne .machine "windows" }}
 *.ps1
+*.ahk
+.wezterm.lua
+komorebi.json
+Documents/**
 {{end}}
