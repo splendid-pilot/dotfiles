@@ -1,4 +1,5 @@
 #SingleInstance Force
+; Remember to change the permission in registry editor.
 g_keyName := "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\System"
 g_valueName := "DisableLockWorkstation"
 #F1::{
@@ -16,3 +17,9 @@ Run "wezterm-gui"
 Run "C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
 }
 
+#c::{
+  Run "komorebic start --ahk"
+}
+#+c::{
+Run "komorebic stop --ahk"
+}

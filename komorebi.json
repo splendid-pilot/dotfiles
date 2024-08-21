@@ -27,7 +27,7 @@
     }
   },
   "animation": {
-    "enabled": true,
+    "enabled": false,
     "style": "EaseInSine"
   },
   "mouse_follows_focus": false,
@@ -66,14 +66,12 @@
       ]
     }
   ],
-  "manage_rules": [
+  "float_rules": [
     {
       "kind": "Path",
-      "id": "C:\\Program Files\\Tencent\\WeChat\\WeChat.exe",
+      "id": "C:\\Program Files\\Tencent\\QQNT\\QQ.exe",
       "matching_strategy": "Equals"
-    }
-  ],
-  "tray_and_multi_window_applications": [
+    },
     {
       "kind": "Path",
       "id": "C:\\Program Files\\Tencent\\WeChat\\WeChat.exe",
