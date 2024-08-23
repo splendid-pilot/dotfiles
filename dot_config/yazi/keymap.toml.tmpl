@@ -16,6 +16,19 @@ prepend_keymap = [
     "p",
   ], run = "plugin --sync smart-paste", desc = "Paste into the hovered directory or CWD" },
 
+  
+  {{- $session := env "XDG_SESSION_TYPE" }}
+  {{if eq $session "x11" -}}
+  
+  { on = [
+    "y",
+  ], run = [
+    "yank",
+    '''
+	shell 'echo "$@" | xclip -i -selection clipboard -t text/uri-list' --confirm
+''',
+  ] },
+  {{else if eq $session "wayland" -}}
   { on = [
     "y",
   ], run = [
@@ -24,16 +37,18 @@ prepend_keymap = [
 	shell --confirm 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list'
 ''',
   ] },
+  {{end -}}
 
   { on = "k", run = "plugin --sync arrow --args=-1" },
-
   { on = "j", run = "plugin --sync arrow --args=1" },
   { on = "K", run = "plugin --sync parent-arrow --args=-1" },
   { on = "J", run = "plugin --sync parent-arrow --args=1" },
   { on = "<A-j>", run = "seek 5" },
   { on = "<A-k>", run = "seek -5" },
 ]
+
 append_keymap = [
+  {{ if ne .machine "windows" -}}
   { on = [
     "g",
     "b",
@@ -50,10 +65,26 @@ append_keymap = [
     "g",
     "p",
   ], run = "cd ~/Projects", desc = "Go to the local share directory", for = "unix" },
+  
+  {{ if ne .machine "linux-wsl" -}}
+  
   { on = [
     "g",
     "f",
   ], run = "cd ~/Files", desc = "Go to Files directory", for = "unix" },
+  
+  {{ else -}}
+  { on = [
+    "g",
+    "w",
+  ], run = "cd ~/win_home/", desc = "Go to Windows user home directory", for = "unix" },
+  
+  { on = [
+    "g",
+    "f",
+  ], run = "cd ~/win_drive/", desc = "Go to Windows D Drive directory", for = "unix" },
+  {{ end -}}
+  
   { on = [
     "g",
     "n",
@@ -62,7 +93,38 @@ append_keymap = [
     "g",
     "r",
   ], run = "cd ~/Repos", desc = "Go to repository directory", for = "unix" },
+  {{ end -}}
   { on = [
     "C",
   ], run = "plugin ouch --args=7z", desc = "Compress with ouch" },
+  
+  {{ if eq .machine "windows" -}}
+  { on = [
+    "g",
+    "a",
+    "l",
+  ], run = "cd ~/AppData/Local", desc = "Go to the local appdata directory" },
+  { on = [
+    "g",
+    "a",
+    "r",
+  ], run = "cd ~/AppData/Roaming", desc = 'Go to local appdata romaing' },
+  { on = [
+    "g",
+    "D",
+    "l",
+  ], run = "cd ~/Drive_D/Download/", desc = "Go to Drive D download dir" },
+  { on = [
+    "g",
+    "p",
+  ], run = "cd ~/Drive_D/Project/", desc = "Go to Project dir" },
+  { on = [
+    "g",
+    "l",
+  ], run = "cd ~/Drive_D/Literatures/", desc = "Go to Project dir" },
+  { on = [
+    "g",
+    "r",
+  ], run = "cd D:/Repos/", desc = "Go to cloned Repo" },
+  {{ end -}}
 ]
