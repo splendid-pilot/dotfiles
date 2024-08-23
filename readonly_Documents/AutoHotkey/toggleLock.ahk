@@ -10,16 +10,20 @@ g_valueName := "DisableLockWorkstation"
   }
 }
 #Enter::{
-Run "wezterm-gui"
+  Run "wt nt -p Ubuntu"
+
+}
+#+Enter::{
+  Run "wt nt -p PowerShell"
 }
 
 #b::{
-Run "C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
+  Run "C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
 }
 
 #c::{
   Run "komorebic start --ahk"
 }
 #+c::{
-Run "komorebic stop --ahk"
+  Run "komorebic stop --ahk"
 }

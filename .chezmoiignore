@@ -12,6 +12,7 @@ README.md
 .local/
 .config/*
 !.config/nvim/
+!.config/yazi/
 .bashrc
 AppData/**
 {{ end }}
