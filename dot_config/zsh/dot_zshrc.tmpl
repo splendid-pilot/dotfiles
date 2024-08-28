@@ -97,6 +97,9 @@ bindkey "^X^E" edit-command-line
 if ! [ -d "$ZDOTDIR/antidote" ]; then
   git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
 fi
+{{ if eq .machine "linux-fedora" -}}
+zstyle ':zephyr:plugin:homebrew:alias' skip 'yes'
+{{- end }}
 zstyle ':antidote:bundle:*' zcompile 'yes'
 zstyle ':antidote:bundle' use-friendly-names 'yes'
 autoload -Uz compinit; compinit
@@ -158,5 +161,6 @@ fi
 export WORDCHARS=${WORDCHARS/\/}
 export WORDCHARS=${WORDCHARS/-}
 export WORDCHARS=${WORDCHARS/.}
+export WORDCHARS=${WORDCHARS/=}
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
