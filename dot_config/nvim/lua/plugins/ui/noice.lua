@@ -1,6 +1,7 @@
 return {
 	"folke/noice.nvim",
 	cond = not vim.g.vscode,
+	version = "4.4.7",
 	opts = {
 		messages = {
 			view = "mini",

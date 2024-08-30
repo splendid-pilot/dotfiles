@@ -1,3 +1,7 @@
 {{ if eq .machine "windows" -}}
-cp $env:USERPROFILE\.config\yazi $env:APPDATA\yazi\config
+$dest = "$env:APPDATA\yazi\config"
+$src = "$env:USERPROFILE\.config\yazi"
+If (-Not (Test-Path $dest)) {
+  New-Item -Path $dest -ItemType Junction -Value $src
+}
 {{ end -}}
