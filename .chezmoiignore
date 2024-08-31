@@ -13,6 +13,7 @@ README.md
 .config/*
 !.config/nvim/
 !.config/yazi/
+!.config/yasb/
 .bashrc
 AppData/**
 {{ end }}
@@ -22,4 +23,5 @@ AppData/**
 .wezterm.lua
 komorebi.json
 Documents/**
+.config/yasb/
 {{end}}

@@ -8,6 +8,13 @@ Komorebic(cmd) {
     RunWait(format("komorebic.exe {}", cmd), , "Hide")
 }
 
+; Stop exsiting yasb
+;for process in ComObjGet("winmgmts:").ExecQuery("Select * from Win32_Process Where Name = 'Python.exe' AND CommandLine LIKE '%yasb%'"){
+;  ProcessClose(process.ProcessId)
+;  break
+;}
+;RunWait("D:\Repos\.venv\Scripts\python.exe D:\Repos\yasb\src\main.py", ,"Hide")
+
 #q::Komorebic("close")
 #+m::Komorebic("minimize")
 #m::Komorebic("toggle-maximize")

@@ -29,12 +29,12 @@ g_valueName := "DisableLockWorkstation"
 
 ; Start tiling WM
 #c:: {
-    Run "komorebic start --ahk"
+    RunWait("komorebic start --ahk",,"Hide")
 }
 
 ; Start stop WM
 #+c:: {
-    Run "komorebic stop"
+    RunWait("komorebic stop",,"Hide")
 }
 
 ; Lock Windows regardless LockWorkStation stsatus

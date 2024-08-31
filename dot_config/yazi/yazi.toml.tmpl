@@ -23,10 +23,8 @@ extract = [
   { run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
 ]
 edit = [
-	{ run = 'nvim "$@"', block = true, for = "unix" },
-	{ run = "nvim %*",   block = true, for = "windows" },
+  { run = 'nvim "$@"', block = true, for = "unix" },
+  { run = "nvim %*", block = true, for = "windows" },
 ]
 [open]
-rules = [
-  {name="*.toml", use = "edit"}
-]
+prepend_rules = [{ name = "*.toml", use = "edit" }]

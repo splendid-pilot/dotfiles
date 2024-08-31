@@ -20,7 +20,7 @@ prepend_keymap = [
     "p",
   ], run = "plugin --sync smart-paste", desc = "Paste into the hovered directory or CWD" },
   
-  {{if ne .machine "windows"-}}
+  {{if ne .machine "windows" -}}
   {{- $session := env "XDG_SESSION_TYPE" }}
   {{if eq $session "x11" -}}
   
@@ -53,53 +53,11 @@ prepend_keymap = [
 ]
 
 append_keymap = [
-  {{ if ne .machine "windows" -}}
-  { on = [
-    "g",
-    "b",
-  ], run = "cd ~/.config/bash", desc = "Go to bash configuration directory", },
   { on = [
     "g",
     "y",
-  ], run = "cd ~/.config/yazi", desc = "Go to yazi configuration directory", },
-  { on = [
-    "g",
-    "z",
-  ], run = "cd ~/.config/zsh", desc = "Go to zsh configuration directory", },
-  { on = [
-    "g",
-    "l",
-  ], run = "cd ~/.local/share", desc = "Go to the local share directory", },
-  { on = [
-    "g",
-    "p",
-  ], run = "cd ~/Projects", desc = "Go to the local share directory", },
+  ], run = "cd ~/.config/yazi", desc = "Go to yazi configuration directory" },
   
-  {{ if ne .machine "linux-wsl" -}}
-  
-  { on = [
-    "g",
-    "f",
-  ], run = "cd ~/Files", desc = "Go to Files directory", },
-  
-  {{ else -}}
-  { on = [
-    "g",
-    "w",
-  ], run = "cd ~/win_home/", desc = "Go to Windows user home directory", },
-  
-  { on = [
-    "g",
-    "f",
-  ], run = "cd ~/win_drive/", desc = "Go to Windows D Drive directory", },
-  {{ end -}}
-  
-  { on = [
-    "g",
-    "r",
-  ], run = "cd ~/Repos", desc = "Go to repository directory", },
-  {{ end -}}
-
   { on = [
     "C",
   ], run = "plugin ouch --args=7z", desc = "Compress with ouch" },
@@ -107,7 +65,55 @@ append_keymap = [
   { on = [
     "g",
     "n",
-  ], run = "cd ~/.config/nvim", desc = "Go to nvim configuration directory", },
+  ], run = "cd ~/.config/nvim", desc = "Go to nvim configuration directory" },
+
+  {{ if ne .machine "windows" -}}
+  { on = [
+    "g",
+    "b",
+  ], run = "cd ~/.config/bash", desc = "Go to bash configuration directory" },
+  
+  { on = [
+    "g",
+    "z",
+  ], run = "cd ~/.config/zsh", desc = "Go to zsh configuration directory" },
+  
+  { on = [
+    "g",
+    "l",
+  ], run = "cd ~/.local/share", desc = "Go to the local share directory" },
+  
+  { on = [
+    "g",
+    "p",
+  ], run = "cd ~/Projects", desc = "Go to the local share directory" },
+  
+  { on = [
+    "g",
+    "r",
+  ], run = "cd ~/Repos", desc = "Go to repository directory" },
+  
+  {{ if eq .machine "linux-fedora" -}}
+  
+  { on = [
+    "g",
+    "f",
+  ], run = "cd ~/Files", desc = "Go to Files directory" },
+  
+  {{ else -}}
+  
+  { on = [
+    "g",
+    "w",
+  ], run = "cd ~/win_home/", desc = "Go to Windows user home directory" },
+  
+  { on = [
+    "g",
+    "f",
+  ], run = "cd ~/win_drive/", desc = "Go to Windows D Drive directory" },
+  
+  {{ end -}}
+  {{ end -}}
 
   {{ if eq .machine "windows" -}}
 
@@ -130,11 +136,5 @@ append_keymap = [
     "g",
     "p",
   ], run = "cd D:/Project/", desc = "Go to Project dir" },
-
-  {
-    on = [
-    "g",
-    "y",], run = "cd ~/AppData/Roaming/yazi/config/", desc = "Go to yazi configuration dir"
-  }
   {{ end -}}
 ]
