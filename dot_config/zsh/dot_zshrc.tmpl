@@ -1,6 +1,8 @@
 {{ if eq .machine "linux-wsl"}}
-if command -v zellij >/dev/null; then
-  eval "$(zellij setup --generate-auto-start zsh)"
+if [[ -z $SSH_TTY ]]; then
+  if command -v zellij >/dev/null; then
+    eval "$(zellij setup --generate-auto-start zsh)"
+  fi
 fi
 {{ end}}
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.

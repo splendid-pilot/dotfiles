@@ -6,17 +6,17 @@ prepend_previewers = [
   { mime = "text/csv", run = "miller" },
   { mime = "application/*zip", run = "ouch" },
   { mime = "application/x-tar", run = "ouch" },
-  {{ if eq .machine "linux-wsl" -}}
-  {  mime = "image/*", run = "noop" },
-  {{- end -}}
+  {{ $ssh := env "SSH_TTY" -}}
+  {{- if ne $ssh "" -}}
+  {{- else if eq .machine "linux-wsl" -}}
+  { mime = "image/*", run = "noop" },
+  {{- end }}
   { mime = "application/x-bzip2", run = "ouch" },
   { mime = "application/x-7z-compressed", run = "ouch" },
   { mime = "application/x-rar", run = "ouch" },
   { mime = "application/x-xz", run = "ouch" },
 ]
-append_previewers = [
-  { name = "*", run = "hexyl" },
-]
+append_previewers = [{ name = "*", run = "hexyl" }]
 [opener]
 extract = [
   { run = 'ouch d -y "%*"', desc = "Extract here with ouch", for = "windows" },

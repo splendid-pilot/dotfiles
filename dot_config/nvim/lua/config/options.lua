@@ -7,6 +7,7 @@ vim.g.commentstring = "# %s"
 vim.g.is_linux = os_name == "Linux"
 vim.g.is_wsl = vim.fn.has("wsl") == 1
 vim.g.is_windows = os_name == "Windows_NT"
+vim.g.is_ssh_session = os.getenv("SSH_TTY") ~= nil
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
@@ -21,20 +22,42 @@ vim.opt.spelllang = "en_us,cjk"
 vim.diagnostic.config({
   virtual_text = false,
 })
+
 -- wsl specific settings
 if vim.g.is_wsl then
-  vim.g.clipboard = {
-    name = "win32yank-wsl",
-    copy = {
-      ["+"] = "win32yank.exe -i --crlf",
-      ["*"] = "win32yank.exe -i --crlf",
-    },
-    paste = {
-      ["+"] = "win32yank.exe -o --lf",
-      ["*"] = "win32yank.exe -o --lf",
-    },
-    cache_enabled = 0,
-  }
+  if vim.g.is_ssh_session then
+    local function paste()
+      return function(lins)
+        local content = vim.fn.getreg('"')
+        return vim.split(content, "\n")
+      end
+    end
+
+    vim.g.clipboard = {
+      name = "OSC 52",
+      copy = {
+        ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+        ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+      },
+      paste = {
+        ["+"] = paste,
+        ["*"] = paste,
+      },
+    }
+  else
+    vim.g.clipboard = {
+      name = "win32yank-wsl",
+      copy = {
+        ["+"] = "win32yank.exe -i --crlf",
+        ["*"] = "win32yank.exe -i --crlf",
+      },
+      paste = {
+        ["+"] = "win32yank.exe -o --lf",
+        ["*"] = "win32yank.exe -o --lf",
+      },
+      cache_enabled = 0,
+    }
+  end
 end
 
 -- neovide settings
