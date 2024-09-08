@@ -23,30 +23,44 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME"/bundle
 export ANSIBLE_HOME="$XDG_DATA_HOME"/ansible
-{{ if eq .machine "linux-wsl"}}
-export UNISON="$XDG_CONFIG_HOME/unison"
-skip_global_compinit=1
-export PATH=/usr/local/cuda/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
-export HISTFILE="$ZDOTDIR/.zhistory"
-{{ else if eq .machine "linux-fedora"}}
-export HTTP_PROXY="http://127.0.0.1:7899"
-export HTTPS_PROXY="http://127.0.0.1:7899"
-export ALL_PROXY="socks5://127.0.0.1:7898"
-export NO_PROXY="127.0.0.1,::1,localhost"
-export HISTFILE="$ZDOTDIR/.zsh_history"
-export LD_LIBRARY_PATH="/usr/local/cuda-12.4/lib64:/usr/local/"
-{{ end }}
+
+if [[ "$(uname -a)" == *WSL* ]]; then
+  machine="wsl"
+elif [[ -f /etc/fedora-release ]]; then
+  machine="fedora"
+else
+  machine="unknown"
+fi
 
 export HOMEBREW_PREFIX=/home/linuxbrew/.linuxbrew
 export HOMEBREW_NO_ANALYTICS=1
-{{ if eq .machine "linux-wsl" -}}
-export EDITOR="$HOMEBREW_PREFIX/bin/nvim"
-export VISUAL="$HOMEBREW_PREFIX/bin/nvim"
-{{else -}}
-export EDITOR="nvim"
-export VISUAL="nvim"
-{{- end}}
+
+case $machine in
+  "wsl")
+    export UNISON="$XDG_CONFIG_HOME/unison"
+    skip_global_compinit=1
+    export PATH=/usr/local/cuda/bin:$PATH
+    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+    export HISTFILE="$ZDOTDIR/.zhistory"
+
+    export EDITOR="$HOMEBREW_PREFIX/bin/nvim"
+    export VISUAL="$HOMEBREW_PREFIX/bin/nvim"
+    if [[ -n $SSH_TTY ]]; then
+      export HTTP_PROXY="http://127.0.0.0:7897"
+      export HTTPS_PROXY="http://127.0.0.1:7897"
+    fi
+    ;;
+  "fedora")
+    export HTTP_PROXY="http://127.0.0.1:7899"
+    export HTTPS_PROXY="http://127.0.0.1:7899"
+    export ALL_PROXY="socks5://127.0.0.1:7898"
+    export NO_PROXY="127.0.0.1,::1,localhost"
+    export HISTFILE="$ZDOTDIR/.zsh_history"
+    export LD_LIBRARY_PATH="/usr/local/cuda-12.4/lib64:/usr/local/"
+    export EDITOR="nvim"
+    export VISUAL="nvim"
+    ;;
+esac
 
 export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
@@ -84,14 +98,12 @@ paths=(
   "/home/linuxbrew/.linuxbrew/bin"
   "/home/linuxbrew/.linuxbrew/sbin"
   "/home/theo/Programs/flutter/bin"
-  {{ if eq .machine "linux-wsl" -}}
+
   "/home/theo/.nvm/versions/node/v20.12.2/bin"
-  {{- end }}
-  {{- if eq .machine "linux-fedora" -}}
+
   "/home/theo/Programs/miktex/bin"
   "/home/theo/Programs/jdk-19.0.1/bin"
   "/home/theo/.pub-cache/bin"
-  {{- end }}
 )
 
 for entry in "${paths[@]}"; do

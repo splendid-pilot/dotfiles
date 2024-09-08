@@ -1,10 +1,19 @@
-{{ if eq .machine "linux-wsl"}}
-if [[ -z $SSH_TTY ]]; then
-  if command -v zellij >/dev/null; then
-    eval "$(zellij setup --generate-auto-start zsh)"
+#!/bin/zsh
+if [[ "$(uname -a)" == *WSL* ]]; then
+  machine="wsl"
+elif [[ -f /etc/fedora-release ]]; then
+  machine="fedora"
+else
+  machine="unknown"
+fi
+  
+if [[ $machine == "wsl" ]]; then
+  if [[ -z $SSH_TTY ]]; then
+    if command -v zellij >/dev/null; then
+      eval "$(zellij setup --generate-auto-start zsh)"
+    fi
   fi
 fi
-{{ end}}
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -99,9 +108,7 @@ bindkey "^X^E" edit-command-line
 if ! [ -d "$ZDOTDIR/antidote" ]; then
   git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
 fi
-{{ if eq .machine "linux-fedora" -}}
 zstyle ':zephyr:plugin:homebrew:alias' skip 'yes'
-{{- end }}
 zstyle ':antidote:bundle:*' zcompile 'yes'
 zstyle ':antidote:bundle' use-friendly-names 'yes'
 autoload -Uz compinit; compinit
@@ -147,11 +154,12 @@ bindkey -M menuselect  '^[[D' .backward-char  '^[OD' .backward-char
 bindkey -M menuselect  '^[[C'  .forward-char  '^[OC'  .forward-char
 bindkey -M menuselect '^M' .accept-line
 
-{{ if eq .machine "linux-wsl" -}}
+
+if [[ $machine == "wsl" ]]; then
 # for fzf to work
 zstyle ':autocomplete:tab:*' fzf-completion yes
 eval "$(fzf --zsh)"
-{{ end -}}
+fi
 
 if command -v atuin >/dev/null; then
   eval "$(atuin init zsh --disable-up-arrow)"

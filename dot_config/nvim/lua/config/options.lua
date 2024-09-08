@@ -14,6 +14,7 @@ vim.g.netrw_winsize = 25
 vim.g.maplocalleader = ","
 -- options
 vim.opt.shortmess:append({ s = true, c = true })
+vim.opt.rtp:append(",/home/linuxbrew/.linuxbrew/opt/fzf/")
 vim.opt.swapfile = false
 vim.opt.wildignore =
   ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**,*.7z,*.tar.gz, __pycache__"
