@@ -76,6 +76,28 @@
       "kind": "Path",
       "id": "C:\\Program Files\\Tencent\\WeChat\\WeChat.exe",
       "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Path",
+      "id": "copyq.exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "kind": "Path",
+      "id": "VISIO",
+      "matching_strategy": "Contains"
+    },
+    {
+      "kind": "Path",
+      "id": "Clash Verge.exe",
+      "matching_strategy": "Contains"
+    }
+  ],
+  "manage_rules": [
+    {
+      "id": "wezterm",
+      "kind": "Path",
+      "matching_strategy": "Contains"
     }
   ]
 }

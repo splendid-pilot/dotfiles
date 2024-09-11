@@ -19,32 +19,55 @@ local night_schemes = {
 }
 
 config.color_scheme = night_schemes[math.random(1, #night_schemes)]
-config.font = wezterm.font("FiraCode Nerd Font", { weight = "Bold" })
+config.font = wezterm.font_with_fallback({
+	{ family = "FiraCode Nerd Font", weight = "Bold" },
+	{ family = "LXGW WenKai", weight = "Bold" },
+})
 config.font_rules = {
 	{
-		intensity = "Bold",
 		italic = true,
-		font = wezterm.font({
-			family = "VictorMono NF",
-			weight = "Bold",
-			style = "Italic",
+		intensity = "Bold",
+		font = wezterm.font_with_fallback({
+			{
+				family = "VictorMono NF",
+				weight = "Bold",
+				style = "Italic",
+			},
+			{
+				family = "LXGW WenKai",
+				weight = "Bold",
+				style = "Italic",
+			},
 		}),
 	},
 	{
 		italic = true,
 		intensity = "Half",
-		font = wezterm.font({
-			family = "VictorMono NF",
-			weight = "Bold",
-			style = "Italic",
+		font = wezterm.font_with_fallback({
+			{
+				family = "VictorMono NF",
+				weight = "Bold",
+				style = "Italic",
+			},
+			{
+				family = "LXGW WenKai",
+				weight = "Bold",
+				style = "Italic",
+			},
 		}),
 	},
 	{
 		italic = true,
 		intensity = "Normal",
-		font = wezterm.font({
-			family = "VictorMono NF",
-			style = "Italic",
+		font = wezterm.font_with_fallback({
+			{
+				family = "VictorMono NF",
+				style = "Italic",
+			},
+			{
+				family = "LXGW WenKai",
+				style = "Italic",
+			},
 		}),
 	},
 }
@@ -54,11 +77,11 @@ config.inactive_pane_hsb = {
 	saturation = 0.9,
 	brightness = 0.8,
 }
-config.default_prog = { "pwsh", "--nologo" }
+config.default_prog = { "pwsh", "-nologo" }
 config.default_cwd = "~"
 config.use_ime = true
 config.window_close_confirmation = "NeverPrompt"
--- config.window_decorations = "NONE"
+config.window_decorations = "NONE"
 
 local act = wezterm.action
 config.keys = {
@@ -121,7 +144,7 @@ config.keys = {
 		key = "@",
 		mods = "ALT|SHIFT",
 		action = act.SpawnCommandInNewTab({
-			args = { "pwsh" },
+			args = { "pwsh", "-nologo" },
 		}),
 	},
 }
@@ -139,4 +162,12 @@ config.mouse_bindings = {
 		action = act.Nop,
 	},
 }
+-- config.unix_domains = {
+-- 	{
+-- 		name = "unix",
+-- 		serve_command = { "wsl", "wezterm-mux-server", "--daemonize" },
+-- 	},
+-- }
+--
+-- config.default_gui_startup_args = { "connect", "unix" }
 return config

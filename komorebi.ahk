@@ -76,6 +76,12 @@ Komorebic(cmd) {
 #7::Komorebic("focus-workspace 6")
 #8::Komorebic("focus-workspace 7")
 
+#,::Komorebic("cycle-workspace previous")
+#.::Komorebic("cycle-workspace next")
+
+#+,::Komorebic("cycle-move-to-workspace previous")
+#+.::Komorebic("cycle-move-to-workspace next")
+
 ; Move windows across workspaces
 #+1::Komorebic("move-to-workspace 0")
 #+2::Komorebic("move-to-workspace 1")
