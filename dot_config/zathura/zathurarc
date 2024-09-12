@@ -1,5 +1,4 @@
 set database "sqlite"
-
 set selection-clipboard clipboard
 set selection-notification false
 set statusbar-basename true
@@ -7,3 +6,9 @@ set statusbar-basename true
 set statusbar-page-percent true
 set window-title-basename true
 # set window-title-page true
+# set font "FiraCode Nerd Font Mono normal 12"
+set font "LXGW Wenkai normal 12"
+
+map <F8> recolor
+map <F9> adjust_window best-fit
+map <F10> adjust_window width

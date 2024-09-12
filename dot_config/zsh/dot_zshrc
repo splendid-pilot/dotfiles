@@ -155,11 +155,11 @@ bindkey -M menuselect  '^[[C'  .forward-char  '^[OC'  .forward-char
 bindkey -M menuselect '^M' .accept-line
 
 
-if [[ $machine == "wsl" ]]; then
+# if [[ $machine == "wsl" ]]; then
 # for fzf to work
 zstyle ':autocomplete:tab:*' fzf-completion yes
 eval "$(fzf --zsh)"
-fi
+# fi
 
 if command -v atuin >/dev/null; then
   eval "$(atuin init zsh --disable-up-arrow)"
