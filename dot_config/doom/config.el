@@ -83,11 +83,11 @@
 ;; they are implemented.
 
 ;; (add-to-list 'initial-frame-alist '(fullscreen . maximized))
-(use-package! flymake-ruff
-  :config
-  (add-hook 'python-mode-hook #'flymake-ruff-load)
-  )
-
+;(use-package! flymake-ruff
+;  :config
+;  (add-hook 'python-mode-hook #'flymake-ruff-load)
+;  )
+;
 (use-package! websocket
   :after org-roam)
 
