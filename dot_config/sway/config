@@ -1,0 +1,42 @@
+set $mod Mod4
+# output * bg /home/theo/Repos/Wallpaper-Bank/wallpapers/Fog-Forest-Everforest.png fill
+
+font pango:FiraCode NerdFont, LXGW Wenkai 12
+
+floating_modifier $mod normal
+default_border none
+
+workspace_auto_back_and_forth yes
+focus_follows_mouse no
+
+# gaps inner 10px
+# gaps outer 10px
+# smart_gaps inverse_outer
+
+input type:keyboard xkb_numlock enabled
+bindswitch --reload --locked lid:on output eDP-1 disable
+bindswitch --reload --locked lid:off output eDP-1 enable
+
+for_window [class="^.*"] inhibit_idle fullscreen
+for_window [app_id="^.*"] inhibit_idle fullscreen
+
+seat * hide_cursor 5000
+
+input "type:touchpad" {
+  dwt enabled
+  tap enabled
+  middle_emulation enabled
+  tap_button_map lrm
+  dwtp enabled
+  natural_scroll enabled
+  
+}
+output HDMI-A-1 mode 1920x1080@74.973Hz
+output HDMI-A-1 pos 0 0
+output eDP-1 pos 1920 0
+
+workspace 1 output HDMI-A-1
+include /etc/sway/config.d/*
+include ~/.config/sway/startup.conf
+include ~/.config/sway/keybinds.conf
+include ~/.config/sway/window_rules.conf

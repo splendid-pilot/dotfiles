@@ -53,3 +53,5 @@
 (package! flymake-ruff)
 (unpin! org-roam)
 (package! org-roam-ui)
+(package! rime)
+(package! chezmoi)
