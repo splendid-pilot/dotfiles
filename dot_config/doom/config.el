@@ -28,7 +28,7 @@
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
 
-(use-package rime
+(use-package! rime
   :custom
   (default-input-method "rime")
   (rime-show-candidate 'posframe)
