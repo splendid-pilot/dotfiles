@@ -8,10 +8,6 @@
 
 (setq display-line-numbers-type 'relative)
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 18 :weight 'SemiBold))
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
-
 
 (setq org-directory "~/Projects/notes")
 (setq org-roam-directory "~/Projects/notes/roam")
@@ -38,3 +34,17 @@
   )
 
 (use-package! chezmoi)
+
+(evil-define-key* '(normal visual) visual-line-mode-map
+  (kbd "j") 'evil-next-visual-line
+  (kbd "k") 'evil-previous-visual-line
+  (kbd "0") 'evil-beginning-of-visual-line
+  (kbd "$") 'evil-end-of-visual-line
+  (kbd "g0") 'evil-beginning-of-line
+  (kbd "g$") 'evil-end-of-line
+  (kbd "^") 'evil-first-non-blank-of-visual-line
+  )
+
+
+(after! apheleia
+  (add-to-list 'apheleia-mode-alist '(markdown-mode . prettier)))
