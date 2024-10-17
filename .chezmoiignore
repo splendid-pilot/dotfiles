@@ -11,8 +11,8 @@ README.md
 .zshenv
 .local/
 .config/*
-!.config/nvim/
-!.config/yazi/
+.config/nvim/
+.config/yazi/
 !.config/yasb/
 .bashrc
 AppData/**

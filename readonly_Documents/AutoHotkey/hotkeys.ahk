@@ -41,7 +41,8 @@ g_isUnlocked := true
     RunWait("komorebic stop", , "Hide")
 }
 #v:: {
-    Run("copyq show")
+    Run("copyq")
+    RunWait("copyq show")
 }
 ; Lock Windows regardless LockWorkStation stsatus
 #F2:: {

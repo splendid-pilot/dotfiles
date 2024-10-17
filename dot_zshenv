@@ -46,7 +46,10 @@ case $machine in
     export PATH=/usr/local/cuda/bin:$PATH
     export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
     export HISTFILE="$ZDOTDIR/.zhistory"
-
+    export DISPLAY=localhost:0
+    export WAYLAND_DISPLAY=$DISPLAY
+    export LIBGL_ALWAYS_INDIRECT=1
+    export XDG_SESSION_TYPE=x11
     export EDITOR="$HOMEBREW_PREFIX/bin/nvim"
     export VISUAL="$HOMEBREW_PREFIX/bin/nvim"
     if [[ -n $SSH_TTY ]]; then
@@ -102,9 +105,7 @@ paths=(
   "/home/linuxbrew/.linuxbrew/bin"
   "/home/linuxbrew/.linuxbrew/sbin"
   "/home/theo/Programs/flutter/bin"
-
   "/home/theo/.nvm/versions/node/v20.12.2/bin"
-
   "/home/theo/Programs/miktex/bin"
   "/home/theo/Programs/jdk-19.0.1/bin"
   "/home/theo/.pub-cache/bin"

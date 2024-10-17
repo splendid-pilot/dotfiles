@@ -5,8 +5,8 @@ debug: false # Enable debug mode to see more logs
 # This komorebi setting will be used for tray context menu.
 # If you don't use komorebi, you can remove this section.
 komorebi:
-  start_command: "komorebic start --whkd"
-  stop_command: "komorebic stop --whkd"
+  start_command: "komorebic start --ahk"
+  stop_command: "komorebic stop"
   reload_command: "komorebic reload-configuration"
 
 # This is the main configuration file for Yet Another Status Bar (YASB)
@@ -22,7 +22,6 @@ bars:
     blur_effect:
       enabled: true
       acrylic: false
-      dark: true
     window_flags:
       always_on_top: false
       windows_app_bar: true
@@ -35,7 +34,13 @@ bars:
       bottom: 4
       right: 0
     widgets:
-      left: ["komorebi_workspaces", "komorebi_active_layout", "active_window"]
+      left:
+        [
+          "win_button",
+          "komorebi_workspaces",
+          "komorebi_active_layout",
+          "active_window",
+        ]
       center: ["clock"]
       right: [
           "media",

@@ -55,3 +55,6 @@
 (package! org-roam-ui)
 (package! rime)
 (package! chezmoi)
+(package! org-modern)
+(package! colorful-mode)
+(package! svg-tag-mode)
