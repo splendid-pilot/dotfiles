@@ -53,7 +53,7 @@ def is_another_instance_running():
                 return True
 
     with open(LOCK_FILE, "w") as f:
-        f.write(str(os.getpid()))
+        _ = f.write(str(os.getpid()))
     return False
 
 

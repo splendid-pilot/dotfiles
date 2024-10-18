@@ -39,7 +39,6 @@ local plain_map = {
 local plug_map = {
 	-- command-line mode
 	["c|<C-b>"] = map_cmd("<Left>"):with_noremap():with_desc("edit: Left"),
-	-- ["c|<C-f>"] = map_cmd("<Right>"):with_noremap():with_desc("edit: Right"),
 	["c|<C-a>"] = map_cmd("<Home>"):with_noremap():with_desc("edit: Home"),
 	["c|<C-e>"] = map_cmd("<End>"):with_noremap():with_desc("edit: End"),
 	["c|<C-d>"] = map_cmd("<Del>"):with_noremap():with_desc("edit: Delete"),
@@ -61,14 +60,6 @@ local plug_map = {
 	["n|k"] = map_callback(function()
 		return et("<Plug>(accelerated_jk_gk)")
 	end):with_expr(),
-
-	-- dropbar.nvim
-	["n|<leader>fa"] = map_callback(function()
-			require("dropbar.api").pick()
-		end)
-		:with_noremap()
-		:with_silent()
-		:with_desc("Pick dropbar"),
 
 	-- smart-splits
 	["n|<A-h>"] = map_cu("SmartResizeLeft"):with_silent():with_noremap():with_desc("window: Resize -3 horizontally"),
@@ -110,26 +101,6 @@ local plug_map = {
 	["nv|<leader>hk"] = map_cmd("<Cmd>HopLineMW<CR>"):with_noremap():with_desc("jump: Goto line"),
 	["nv|<leader>hc"] = map_cmd("<Cmd>HopChar1MW<CR>"):with_noremap():with_desc("jump: Goto one char"),
 	["nv|<leader>hC"] = map_cmd("<Cmd>HopChar2MW<CR>"):with_noremap():with_desc("jump: Goto two chars"),
-
-	-- Plugin: nvim-spectre
-	["n|<leader>sp"] = map_callback(function()
-			require("spectre").open_visual({ select_word = true })
-		end)
-		:with_silent()
-		:with_noremap()
-		:with_desc("editn: search&replace current word (project)"),
-	["v|<leader>sp"] = map_callback(function()
-			require("spectre").open_visual()
-		end)
-		:with_silent()
-		:with_noremap()
-		:with_desc("edit: search & replace current word (project)"),
-	["n|<leader>sf"] = map_callback(function()
-			require("spectre").open_file_search({ select_word = true })
-		end)
-		:with_silent()
-		:with_noremap()
-		:with_desc("editn: search & replace current word (file)"),
 
 	-- Plugin Oil.nvim
 	["n|-"] = map_cr("Oil"):with_silent():with_noremap():with_desc("Oil"),
@@ -176,26 +147,6 @@ local plug_map = {
 		:with_desc("Telescope: Find Conifg File")
 		:with_noremap()
 		:with_silent(),
-
-	-- Plugin zen-mode.nvim
-	["n|<leader>uz"] = map_callback(function()
-			if vim.g.is_zen == nil or vim.g.is_zen == false then
-				vim.g.is_zen = true
-				require("lualine").hide()
-				require("zen-mode").toggle({
-					window = {
-						width = 0.85,
-					},
-				})
-			else
-				vim.g.is_zen = false
-				require("lualine").hide({ unhide = true })
-				require("zen-mode").close({})
-			end
-		end)
-		:with_noremap()
-		:with_silent()
-		:with_desc("Toggle zen-mode"),
 }
 
 if not vim.g.is_windows then

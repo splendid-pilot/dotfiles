@@ -78,15 +78,11 @@ if vim.g.is_windows then
 	vim.opt.shell = "pwsh"
 	local shell_config = function()
 		local basecmd = "-NoLogo -MTA -ExecutionPolicy RemoteSigned"
-		-- local ctrlcmd = "-Command [console]::InputEncoding = [console]::OutputEncoding = [System.Text.Encoding]::UTF8"
 		local ctrlcmd =
 			"-Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
-		local set_opt = vim.api.nvim_set_option_value
 		vim.api.nvim_set_option_value("shell", vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell", {})
 		vim.api.nvim_set_option_value("shellcmdflag", string.format("%s %s;", basecmd, ctrlcmd), {})
 		vim.api.nvim_set_option_value("shellredir", '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode', {})
-		-- vim.api.nvim_set_option_value("shellredir", "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode", {})
-		-- vim.api.nvim_set_option_value("shellpipe", "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode", {})
 		vim.api.nvim_set_option_value("shellpipe", '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode', {})
 		vim.api.nvim_set_option_value("shellquote", "", {})
 		vim.api.nvim_set_option_value("shellxquote", "", {})

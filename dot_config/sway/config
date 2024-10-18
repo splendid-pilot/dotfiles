@@ -35,6 +35,6 @@ output eDP-1 pos 1920 0
 workspace 1 output HDMI-A-1
 workspace number "1"
 include /etc/sway/config.d/*
-include ~/.config/sway/startup.conf
+include ~/.config/sway/startups.conf
 include ~/.config/sway/keybinds.conf
 include ~/.config/sway/window_rules.conf

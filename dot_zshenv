@@ -66,14 +66,15 @@ case $machine in
     export HISTFILE="$ZDOTDIR/.zsh_history"
     export EDITOR="nvim"
     export VISUAL="nvim"
+    export OPENAI_API_KEY=$(gopass show api/gpt)
+    export ANTHROPIC_API_KEY=$(gopass show api/claude)
+    export PGPASSWORD=$(gopass show postgre)
     ;;
 esac
 
 export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-
 export MANPATH="${MANPATH-$(manpath)}:/home/theo/.local/share/npm/share/man:/home/theo/programs/texlive/2024/texmf-dist/doc/man"
-
 export HISTORY_IGNORE="ls *:ll *:cd *:pwd:exit:history"
 export HISTSIZE=50000
 export SAVEHIST=10000

@@ -1,0 +1,15 @@
+show=drun
+width=750
+height=400
+always_parse_args=true
+show_all=false
+matching=fuzzy
+term=kitty
+hide_scroll=true
+print_command=true
+insensitive=true
+prompt=
+columns=2
+key_down=Ctrl-n
+key_up=Ctrl-p
+sort_order=default

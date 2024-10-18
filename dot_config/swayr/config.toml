@@ -1,7 +1,6 @@
 [menu]
 executable = "wofi"
 args = [
-  "--style=/home/theo/.config/wofi/src/mocha/style.css",
   "--show=dmenu",
   "--allow-markup",
   "--allow-images",

@@ -1,14 +1,6 @@
-local mapping = require("config.completions")
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local MineGroup = augroup("MineGroup", {})
-
-autocmd("LspAttach", {
-	group = augroup("LspKeymapLoader", { clear = true }),
-	callback = function(event)
-		mapping.lsp(event.buf)
-	end,
-})
 
 vim.api.nvim_create_autocmd("BufReadPost", {
 	pattern = { "*.json" },
