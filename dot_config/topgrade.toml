@@ -1,0 +1,67 @@
+[misc]
+no_retry = true
+cleanup = false
+notify_each_step = true
+only = [
+  "system",
+  "wsl",
+  "wsl_update",
+  "deno",
+  "miktex",
+  "powershell",
+  "scoop",
+  "snap",
+  "cargo",
+  "conda",
+  "git_repos",
+  "self_update",
+  "shell",
+  "node",
+  "go",
+  "emacs",
+  "firmware",
+  "flatpak",
+  "config_update",
+  "chezmoi",
+  "custom_commands",
+  "github_cli_extensions",
+  "gnome_shell_extensions",
+  "pip3",
+  "pip_review",
+  "pip_review_local",
+  "pipupgrade",
+  "pipx",
+  "yadm",
+  "rustup",
+  "tldr",
+  "brew_cask",
+  "brew_formula",
+]
+
+no_self_update = false
+
+[git]
+max_concurrency = 8
+
+# Additional git repositories to pull
+repos = ["~/.config/zsh/antidote/", "~/Repos/*", "~/.config/yazi/plugins/*/"]
+
+# Arguments to pass Git when pulling Repositories
+arguments = "--rebase --autostash"
+
+
+[windows]
+accept_all_updates = false
+wsl_update_pre_release = true
+
+[npm]
+# Use sudo if the NPM directory isn't owned by the current user
+use_sudo = false
+
+[firmware]
+# Offer to update firmware; if false just check for and display available updates
+upgrade = false
+
+[flatpak]
+# Use sudo for updating the system-wide installation
+use_sudo = false

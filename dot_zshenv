@@ -16,6 +16,7 @@ export WINEPREFIX="$XDG_DATA_HOME"/wine
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export W3M_DIR="$XDG_DATA_HOME"/w3m
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 export DOTNET_CLI_HOME="$XDG_DATA_HOME"/dotnet
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME"/bundle
@@ -43,27 +44,26 @@ case $machine in
   "wsl")
     export UNISON="$XDG_CONFIG_HOME/unison"
     skip_global_compinit=1
-    export PATH=/usr/local/cuda/bin:$PATH
-    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+    export PATH=:$PATH
     export HISTFILE="$ZDOTDIR/.zhistory"
+
+    export EDITOR="$HOMEBREW_PREFIX/bin/nvim"
+    export VISUAL="$HOMEBREW_PREFIX/bin/nvim"
     export DISPLAY=localhost:0
     export WAYLAND_DISPLAY=$DISPLAY
     export LIBGL_ALWAYS_INDIRECT=1
     export XDG_SESSION_TYPE=x11
-    export EDITOR="$HOMEBREW_PREFIX/bin/nvim"
-    export VISUAL="$HOMEBREW_PREFIX/bin/nvim"
     if [[ -n $SSH_TTY ]]; then
       export HTTP_PROXY="http://127.0.0.0:7897"
       export HTTPS_PROXY="http://127.0.0.1:7897"
     fi
     ;;
   "fedora")
-    export HTTP_PROXY="http://127.0.0.1:7899"
-    export HTTPS_PROXY="http://127.0.0.1:7899"
-    export ALL_PROXY="socks5://127.0.0.1:7898"
+    export HTTPS_PROXY=http://127.0.0.1:7897
+    export HTTP_PROXY=http://127.0.0.1:7897
+    export ALL_PROXY=socks5://127.0.0.1:7897
     export NO_PROXY="127.0.0.1,::1,localhost"
     export HISTFILE="$ZDOTDIR/.zsh_history"
-    export LD_LIBRARY_PATH="/usr/local/cuda-12.4/lib64:/usr/local/"
     export EDITOR="nvim"
     export VISUAL="nvim"
     ;;
@@ -96,14 +96,15 @@ paths=(
   "/home/theo/.local/bin"
   "/home/theo/Programs/go/bin"
   "$XDG_DATA_HOME"/go/bin
-  "/usr/local/cuda-12.4/bin"
   "$XDG_CONFIG_HOME"/emacs/bin
   "$XDG_DATA_HOME"/npm/bin
   "$XDG_DATA_HOME"/JetBrains/Toolbox/scripts
   "$XDG_DATA_HOME"/bun/bin
   "$XDG_DATA_HOME"/deno/bin
-  "/home/linuxbrew/.linuxbrew/bin"
-  "/home/linuxbrew/.linuxbrew/sbin"
+  "$HOMEBREW_PREFIX"/bin
+  "$HOMEBREW_PREFIX"/sbin
+  "/usr/local/cuda-12.4/bin"
+  "/usr/local/cuda/bin"
   "/home/theo/Programs/flutter/bin"
   "/home/theo/.nvm/versions/node/v20.12.2/bin"
   "/home/theo/Programs/miktex/bin"

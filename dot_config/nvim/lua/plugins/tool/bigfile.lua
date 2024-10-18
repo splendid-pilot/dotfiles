@@ -13,6 +13,13 @@ local cmp = {
 		require("cmp").setup.buffer({ enabled = false })
 	end,
 }
+local treesitter = {
+	name = "tree-sitter",
+	opts = { defer = true },
+	disable = function()
+		vim.treesitter.stop(0)
+	end,
+}
 return {
 	"LunarVim/bigfile.nvim",
 	lazy = false,
@@ -27,6 +34,7 @@ return {
 			"vimopts",
 			ftdetect,
 			cmp,
+			treesitter,
 			"indent_blankline",
 			"illuminate",
 			"matchparen",

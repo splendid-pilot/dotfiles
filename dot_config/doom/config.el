@@ -44,11 +44,21 @@
   (kbd "g$") 'evil-end-of-line
   (kbd "^") 'evil-first-non-blank-of-visual-line
   )
+
 (evil-define-key* 'normal global-map
   (kbd "<SPC>wmf") 'toggle-frame-maximized)
 
 (after! apheleia
+  (dolist (mode '(python-mode python-ts-mode))
+    (setf (alist-get mode apheleia-mode-alist) '(ruff-isort ruff)))
+
   (add-to-list 'apheleia-mode-alist '(markdown-mode . prettier)))
+
+(add-hook 'python-mode-hook #'flymake-ruff-load)
+
+(setq lsp-inlay-hint-enable t)
+(after! lsp-mode
+  (setq lsp-ruff-lsp-server-command '("ruff" "server")))
 
 (use-package! org-modern
   :config

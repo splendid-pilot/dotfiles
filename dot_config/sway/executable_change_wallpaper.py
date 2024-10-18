@@ -53,29 +53,29 @@ def is_another_instance_running():
                 return True
 
     with open(LOCK_FILE, "w") as f:
-        _ = f.write(str(os.getpid()))
+        f.write(str(os.getpid()))
     return False
 
 
 def cleanup():
+    # Only cleanup the lock file if this process created it
     if os.path.exists(LOCK_FILE):
-        os.remove(LOCK_FILE)
+        with open(LOCK_FILE, "r") as f:
+            pid = f.read().strip()
+            if pid == str(os.getpid()):
+                os.remove(LOCK_FILE)
 
 
 if __name__ == "__main__":
     try:
-        if is_another_instance_running():
-            print("Another instance is already running.")
-            sys.exit(0)
-
         if "--change-now" in sys.argv:
             change_wallpaper()
         else:
-            if not is_another_instance_running():
-                while True:
-                    change_wallpaper()
-                    time.sleep(INTERVAL_SECONDS)
-            else:
+            if is_another_instance_running():
+                print("Another instance is already running.")
                 sys.exit(0)
+            while True:
+                change_wallpaper()
+                time.sleep(INTERVAL_SECONDS)
     finally:
         cleanup()

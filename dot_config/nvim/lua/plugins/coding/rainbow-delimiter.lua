@@ -9,10 +9,9 @@ return {
 				[""] = rainbow.strategy["global"],
 				json = function(bufnr)
 					local line_count = vim.api.nvim_buf_line_count(bufnr)
-					if line_count > 10000 then
+					local size = vim.fn.getfsize(vim.fn.expand("%:p"))
+					if line_count > 10000 or size > 1024 * 1024 * 0.2 then
 						return nil
-					elseif line_count > 10000 then
-						return rainbow.strategy["global"]
 					end
 					return rainbow.strategy["local"]
 				end,
