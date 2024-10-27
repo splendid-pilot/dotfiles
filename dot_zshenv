@@ -66,9 +66,9 @@ case $machine in
     export HISTFILE="$ZDOTDIR/.zsh_history"
     export EDITOR="nvim"
     export VISUAL="nvim"
-    export OPENAI_API_KEY=$(gopass show api/gpt)
-    export ANTHROPIC_API_KEY=$(gopass show api/claude)
-    export PGPASSWORD=$(gopass show postgre)
+    # export OPENAI_API_KEY=$(gopass show api/gpt)
+    # export ANTHROPIC_API_KEY=$(gopass show api/claude)
+    # export PGPASSWORD=$(gopass show postgre)
     ;;
 esac
 
@@ -125,3 +125,6 @@ for env in "${envs[@]}"; do
   [ -f "$env" ] && . "$env"
 done
 unset env
+
+# bun completions
+[ -s "/home/theo/.local/share/bun/_bun" ] && source "/home/theo/.local/share/bun/_bun"

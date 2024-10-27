@@ -2,6 +2,9 @@ return {
 	"stevearc/aerial.nvim",
 	lazy = true,
 	cond = not vim.g.vscode,
+	keys = {
+		{ "go", "<cmd>AerialToggle!<cr>", desc = "Toggle aerial symbol" },
+	},
 	opts = {
 		lazy_load = false,
 		close_on_select = true,

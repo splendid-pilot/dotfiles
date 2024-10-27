@@ -36,16 +36,33 @@ rofi_cmd() {
 
 # Confirmation CMD
 confirm_cmd() {
-  rofi -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 350px;}' \
-    -theme-str 'mainbox {children: [ "message", "listview" ];}' \
-    -theme-str 'listview {columns: 2; lines: 1;}' \
-    -theme-str 'element-text {horizontal-align: 0.5;}' \
-    -theme-str 'textbox {horizontal-align: 0.5;}' \
-    -dmenu \
-    -m "$monitor" \
-    -p 'Confirmation' \
-    -mesg 'Are you Sure?' \
-    -theme "${dir}"/${theme}.rasi
+
+  case ${DESKTOP_SESSION} in
+    "sway")
+      monitor=$(swaymsg -t get_outputs --raw | jq '. | map(select(.focused == true)) | .[0].name' -r)
+      rofi -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 350px;}' \
+        -theme-str 'mainbox {children: [ "message", "listview" ];}' \
+        -theme-str 'listview {columns: 2; lines: 1;}' \
+        -theme-str 'element-text {horizontal-align: 0.5;}' \
+        -theme-str 'textbox {horizontal-align: 0.5;}' \
+        -dmenu \
+        -m "$monitor" \
+        -p 'Confirmation' \
+        -mesg 'Are you Sure?' \
+        -theme "${dir}"/${theme}.rasi
+      ;;
+    "i3")
+      rofi -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 350px;}' \
+        -theme-str 'mainbox {children: [ "message", "listview" ];}' \
+        -theme-str 'listview {columns: 2; lines: 1;}' \
+        -theme-str 'element-text {horizontal-align: 0.5;}' \
+        -theme-str 'textbox {horizontal-align: 0.5;}' \
+        -dmenu \
+        -p 'Confirmation' \
+        -mesg 'Are you Sure?' \
+        -theme "${dir}"/${theme}.rasi
+      ;;
+  esac
 }
 
 # Ask for confirmation
