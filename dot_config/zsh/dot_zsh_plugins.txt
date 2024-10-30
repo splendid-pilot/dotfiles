@@ -1,3 +1,4 @@
+# vim: ft=config nospell commentstring=#%s
 $ZDOTDIR/zfunc kind:fpath
 mattmc3/zephyr path:plugins/homebrew
 zsh-users/zsh-completions path:src kind:fpath
@@ -8,7 +9,7 @@ ohmyzsh/ohmyzsh path:plugins/golang
 ohmyzsh/ohmyzsh path:plugins/aliases
 ohmyzsh/ohmyzsh path:plugins/zoxide
 ohmyzsh/ohmyzsh path:plugins/command-not-found
-marlonrichert/zsh-autocomplete
+# marlonrichert/zsh-autocomplete
 romkatv/powerlevel10k
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-history-substring-search

@@ -6,7 +6,7 @@ elif [[ -f /etc/fedora-release ]]; then
 else
   machine="unknown"
 fi
-  
+
 if [[ $machine == "wsl" ]]; then
   if [[ -z $SSH_TTY ]]; then
     if command -v zellij >/dev/null; then
@@ -111,8 +111,7 @@ fi
 zstyle ':zephyr:plugin:homebrew:alias' skip 'yes'
 zstyle ':antidote:bundle:*' zcompile 'yes'
 zstyle ':antidote:bundle' use-friendly-names 'yes'
-zstyle ':omz:plugins:nvm' lazy yes
-autoload -Uz compinit; compinit
+
 zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins
 
 [[ -f ${zsh_plugins}.txt ]] || touch ${zsh_plugins}.txt
@@ -125,6 +124,8 @@ if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
 fi
 
 source ${zsh_plugins}.zsh
+autoload -Uz compinit; compinit
+
 bindkey '^[[A' history-substring-search-up # or '\eOA'
 bindkey '^[[B' history-substring-search-down # or '\eOB'
 bindkey '^P' history-search-backward
@@ -145,16 +146,16 @@ unset rc
 alias d='dirs -v'
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 bindkey '^ ' autosuggest-accept
-bindkey              '^I'         menu-complete
-bindkey "$terminfo[kcbt]" reverse-menu-complete
-bindkey              '^I' menu-select
-bindkey "$terminfo[kcbt]" menu-select
-bindkey -M menuselect              '^I'         menu-complete
-bindkey -M menuselect "$terminfo[kcbt]" reverse-menu-complete
-bindkey -M menuselect  '^[[D' .backward-char  '^[OD' .backward-char
-bindkey -M menuselect  '^[[C'  .forward-char  '^[OC'  .forward-char
-bindkey -M menuselect '^M' .accept-line
-
+# bindkey              '^I'         menu-complete
+# bindkey "$terminfo[kcbt]" reverse-menu-complete
+# bindkey              '^I' menu-select
+# bindkey "$terminfo[kcbt]" menu-select
+# bindkey -M menuselect              '^I'         menu-complete
+# bindkey -M menuselect "$terminfo[kcbt]" reverse-menu-complete
+# bindkey -M menuselect  '^[[D' .backward-char  '^[OD' .backward-char
+# bindkey -M menuselect  '^[[C'  .forward-char  '^[OC'  .forward-char
+# bindkey -M menuselect '^M' .accept-line
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # if [[ $machine == "wsl" ]]; then
 # for fzf to work

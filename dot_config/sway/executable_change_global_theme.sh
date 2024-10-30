@@ -35,6 +35,7 @@ set_dark_theme() {
   sed -i "s/^theme=.*/theme=\"$QT_THEME_DARK\"/" "$QT_CONFIG"
   echo "@import \"$ROFI_THEME_DARK\"" >"$ROFI_CONFIG"
   ln -sf "$WOFI_THEME_DARK" "$WOFI_THEME_DIR/style.css"
+  ln -sf "$XDG_CONFIG_HOME"/gtk-3.0/settings-dark.ini "$XDG_CONFIG_HOME"/gtk-3.0/settings.ini
   notify-send "Switched to Dark theme"
 }
 
@@ -49,6 +50,7 @@ set_light_theme() {
   sed -i "s/^theme=.*/theme=\"$QT_THEME_LIGHT\"/" "$QT_CONFIG"
   echo "@import \"$ROFI_THEME_LIGHT\"" >"$ROFI_CONFIG"
   ln -sf "$WOFI_THEME_LIGHT" "$WOFI_THEME_DIR/style.css"
+  ln -sf "$XDG_CONFIG_HOME"/gtk-3.0/settings-light.ini "$XDG_CONFIG_HOME"/gtk-3.0/settings.ini
   notify-send "Switched to light theme"
 }
 

@@ -92,18 +92,21 @@ export FZF_ALT_C_COMMAND="fd --type d --hidden --strip-cwd-prefix --exclude .git
 export FZF_CTRL_T_OPTS="--select-1 --exit-0"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --select-1 --exit-0"
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --ansi"
 
 paths=(
+  "$XDG_DATA_HOME/bin"
   "$XDG_DATA_HOME"/go/bin
-  "$XDG_DATA_HOME"/bin
+  "$XDG_CONFIG_HOME"/emacs/bin
+  "$XDG_CONFIG_HOME"/miktex/bin
   "$XDG_DATA_HOME"/npm/bin
   "$XDG_DATA_HOME"/JetBrains/Toolbox/scripts
   "$XDG_DATA_HOME"/bun/bin
   "$XDG_DATA_HOME"/deno/bin
+  "$XDG_DATA_HOME"/juliaup/bin
   "$XDG_DATA_HOME"/flutter/bin
   "$XDG_DATA_HOME"/jdk-19.0.1/bin
-  "$XDG_DATA_HOME"/miktex/bin
-  "$XDG_CONFIG_HOME"/emacs/bin
+  "$XDG_DATA_HOME"/flutter/bin
   "$HOMEBREW_PREFIX"/bin
   "$HOMEBREW_PREFIX"/sbin
   "/usr/local/cuda-12.4/bin"

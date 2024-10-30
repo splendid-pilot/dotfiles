@@ -4,7 +4,16 @@
 (setq doom-themes-enable-bold t
       doom-themes-enable-italic t)
 
-(setq doom-theme 'doom-tokyo-night)
+(defun set-theme-based-on-gnome-color-scheme ()
+  "Set Doom Emacs theme based on GNOME color scheme."
+  (let ((color-scheme (string-trim (shell-command-to-string "gsettings get org.gnome.desktop.interface color-scheme"))))
+    (cond
+     ((string= color-scheme "'default'")
+      (setq doom-theme 'doom-ayu-light))
+     ((string= color-scheme "'prefer-dark'")
+      (setq doom-theme 'doom-tokyo-night)))))
+(set-theme-based-on-gnome-color-scheme)
+(load-theme doom-theme t)
 
 (setq display-line-numbers-type 'relative)
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 18 :weight 'SemiBold))

@@ -15,7 +15,7 @@ alias cforget='chezmoi forget'
 alias cgp='chezmoi git push'
 alias cgl='chezmoi git pull'
 alias cfind='chezmoi find'
-alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+alias wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
 alias cgf='chezmoi git fetch'
 alias cgst='chezmoi git status'
 alias cedit='chezmoi edit'
