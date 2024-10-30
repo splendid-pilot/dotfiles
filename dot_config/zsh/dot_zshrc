@@ -111,6 +111,7 @@ fi
 zstyle ':zephyr:plugin:homebrew:alias' skip 'yes'
 zstyle ':antidote:bundle:*' zcompile 'yes'
 zstyle ':antidote:bundle' use-friendly-names 'yes'
+zstyle ':omz:plugins:nvm' lazy yes
 autoload -Uz compinit; compinit
 zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins
 

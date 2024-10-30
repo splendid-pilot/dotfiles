@@ -1,7 +1,0 @@
-{{ if eq .machine "windows" -}}
-$dest = "$env:APPDATA\yazi\config"
-$src = "$env:USERPROFILE\.config\yazi"
-If (-Not (Test-Path $dest)) {
-  New-Item -Path $dest -ItemType Junction -Value $src
-}
-{{ end -}}

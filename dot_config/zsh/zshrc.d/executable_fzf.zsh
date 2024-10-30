@@ -20,8 +20,3 @@ _fzf_comprun() {
     *) fzf --preview 'bat -n --color=always {}' "$@" ;;
   esac
 }
-
-# eval "$(fzf --zsh)"
-
-# bindkey '^T' fzf-completion
-# bindkey '^I' $fzf_default_completion

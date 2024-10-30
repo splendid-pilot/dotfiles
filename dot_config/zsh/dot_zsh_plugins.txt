@@ -1,28 +1,14 @@
 $ZDOTDIR/zfunc kind:fpath
 mattmc3/zephyr path:plugins/homebrew
-# conda-incubator/conda-zsh-completion kind:fpath
 zsh-users/zsh-completions path:src kind:fpath
-
-
 hlissner/zsh-autopair
-# romkatv/zsh-bench kind:path
 zdharma-continuum/fast-syntax-highlighting kind:defer
-
-
 ohmyzsh/ohmyzsh path:plugins/git
 ohmyzsh/ohmyzsh path:plugins/golang
 ohmyzsh/ohmyzsh path:plugins/aliases
 ohmyzsh/ohmyzsh path:plugins/zoxide
-{{ if eq .machine "linux-wsl"}}
-ohmyzsh/ohmyzsh path:plugins/nvm
-{{ end}}
 ohmyzsh/ohmyzsh path:plugins/command-not-found
-# ohmyzsh/ohmyzsh path:plugins/dirhistory kind:defer
-
-
-# sorin-ionescu/prezto path:modules/completion
 marlonrichert/zsh-autocomplete
-
 romkatv/powerlevel10k
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-history-substring-search

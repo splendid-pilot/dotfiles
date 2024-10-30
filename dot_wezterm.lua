@@ -140,13 +140,13 @@ config.keys = {
 			args = { "wsl", "~" },
 		}),
 	},
-	{
-		key = "@",
-		mods = "ALT|SHIFT",
-		action = act.SpawnCommandInNewTab({
-			args = { "pwsh", "-nologo" },
-		}),
-	},
+	{ key = "@", mods = "ALT|SHIFT", action = act.SpawnCommandInNewTab({
+		args = { "pwsh", "-nologo" },
+	}) },
+
+	{ key = "#", mods = "ALT|SHIFT", action = act.SpawnCommandInNewTab({
+		args = { "cmd" },
+	}) },
 }
 config.mouse_bindings = {
 	-- Bind 'Up' event of CTRL-Click to open hyperlinks
@@ -155,8 +155,8 @@ config.mouse_bindings = {
 		mods = "CTRL|SHIFT",
 		action = act.OpenLinkAtMouseCursor,
 	},
-	-- Disable the 'Down' event of CTRL-Click to avoid weird program behaviors
 	{
+		-- Disable the 'Down' event of CTRL-Click to avoid weird program behaviors
 		event = { Down = { streak = 1, button = "Left" } },
 		mods = "CTRL|SHIFT",
 		action = act.Nop,

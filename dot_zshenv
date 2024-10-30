@@ -94,22 +94,20 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap 
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --select-1 --exit-0"
 
 paths=(
-  "/home/theo/.local/bin"
-  "/home/theo/Programs/go/bin"
   "$XDG_DATA_HOME"/go/bin
-  "$XDG_CONFIG_HOME"/emacs/bin
+  "$XDG_DATA_HOME"/bin
   "$XDG_DATA_HOME"/npm/bin
   "$XDG_DATA_HOME"/JetBrains/Toolbox/scripts
   "$XDG_DATA_HOME"/bun/bin
   "$XDG_DATA_HOME"/deno/bin
+  "$XDG_DATA_HOME"/flutter/bin
+  "$XDG_DATA_HOME"/jdk-19.0.1/bin
+  "$XDG_DATA_HOME"/miktex/bin
+  "$XDG_CONFIG_HOME"/emacs/bin
   "$HOMEBREW_PREFIX"/bin
   "$HOMEBREW_PREFIX"/sbin
   "/usr/local/cuda-12.4/bin"
   "/usr/local/cuda/bin"
-  "/home/theo/Programs/flutter/bin"
-  "/home/theo/.nvm/versions/node/v20.12.2/bin"
-  "/home/theo/Programs/miktex/bin"
-  "/home/theo/Programs/jdk-19.0.1/bin"
   "/home/theo/.pub-cache/bin"
 )
 

@@ -6,3 +6,4 @@ ignore-globs:
   - IntelGraphicsProfiles
   - "Local Settings"
   - NetHood
+  - Intel
