@@ -48,10 +48,11 @@ switch $machine
         set -gx WAYLAND_DISPLAY "$DISPLAY"
         set -gx LIBGL_ALWAYS_INDIRECT 1
         set -gx XDG_SESSION_TYPE x11
-
-        if set -q SSH_TTY
+        if test -z "$SSH_TTY"
             set -gx HTTP_PROXY "http://127.0.0.1:7897"
             set -gx HTTPS_PROXY "http://127.0.0.1:7897"
+            set -gx ALL_PROXY "socks5://127.0.0.1:7897"
+            set -gx NO_PROXY "127.0.0.1,::1,localhost"
         end
 
     case fedora

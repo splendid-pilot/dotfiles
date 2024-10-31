@@ -1,7 +1,7 @@
 if status is-interactive
-    if type -q fzf
-        fzf --fish | source
-    end
+    # if type -q fzf
+    #     fzf --fish | source
+    # end
 
     if type -q atuin
         atuin init fish --disable-up-arrow | source
@@ -16,9 +16,10 @@ if status is-interactive
     end
 
     if uname -a | grep -q WSL
-        if -z "$SSH_TTY"
-        if type -q zellij
-            eval (zellij setup --generate-auto-start fish)
+        if test -z "$SSH_TTY"
+            if type -q zellij && test -z "$ZELLIJ"
+                eval (zellij setup --generate-auto-start fish | string collect)
+            end
         end
     end
 end

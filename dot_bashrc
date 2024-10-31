@@ -1,14 +1,10 @@
-#!/bin/zsh
-typeset -U path
+#!/bin/bash
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
-# export GTK_IM_MODULE=fcitx5
 export QT_IM_MODULE=fcitx5
 export XMODIFIERS=@im=fcitx5
-ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export ANTIDOTE_HOME="$ZDOTDIR/antidote"
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export BUN_INSTALL="$XDG_DATA_HOME"/bun
 export DENO_INSTALL="$XDG_DATA_HOME"/deno
@@ -28,50 +24,8 @@ export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME"/bundle
 export ANSIBLE_HOME="$XDG_DATA_HOME"/ansible
 export CLICOLOR_FORCE=1
-
-if [[ "$(uname -a)" == *WSL* ]]; then
-  machine="wsl"
-elif [[ -f /etc/fedora-release ]]; then
-  machine="fedora"
-else
-  machine="unknown"
-fi
-
 export HOMEBREW_PREFIX=/home/linuxbrew/.linuxbrew
 export HOMEBREW_NO_ANALYTICS=1
-
-case $machine in
-  "wsl")
-    export UNISON="$XDG_CONFIG_HOME/unison"
-    skip_global_compinit=1
-    export PATH=:$PATH
-    export HISTFILE="$ZDOTDIR/.zhistory"
-
-    export EDITOR="$HOMEBREW_PREFIX/bin/nvim"
-    export VISUAL="$HOMEBREW_PREFIX/bin/nvim"
-    export DISPLAY=localhost:0
-    export WAYLAND_DISPLAY=$DISPLAY
-    export LIBGL_ALWAYS_INDIRECT=1
-    export XDG_SESSION_TYPE=x11
-    if [[ -n $SSH_TTY ]]; then
-      export HTTP_PROXY="http://127.0.0.0:7897"
-      export HTTPS_PROXY="http://127.0.0.1:7897"
-    fi
-    ;;
-  "fedora")
-    export HTTPS_PROXY=http://127.0.0.1:7897
-    export HTTP_PROXY=http://127.0.0.1:7897
-    export ALL_PROXY=socks5://127.0.0.1:7897
-    export NO_PROXY="127.0.0.1,::1,localhost"
-    export HISTFILE="$ZDOTDIR/.zsh_history"
-    export EDITOR="nvim"
-    export VISUAL="nvim"
-    # export OPENAI_API_KEY=$(gopass show api/gpt)
-    # export ANTHROPIC_API_KEY=$(gopass show api/claude)
-    # export PGPASSWORD=$(gopass show postgre)
-    ;;
-esac
-
 export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANPATH="${MANPATH-$(manpath)}:/home/theo/.local/share/npm/share/man:/home/theo/programs/texlive/2024/texmf-dist/doc/man"
@@ -81,12 +35,9 @@ export SAVEHIST=10000
 export HISTTIMEFORMAT="%Y/%m/%d %H:%M:%S "
 export HISTCONTROL=ignoreboth
 export HISTDUP=erase
-
 export SBCL_HOME="/home/theo/programs/sbcl/lib/sbcl"
 export GOBIN="/home/theo/.local/share/go/bin"
 export GOPATH="/home/theo/.local/share/go"
-
-# fzf stuff
 export FZF_CTRL_T_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git --exclude .github"
 export FZF_ALT_C_COMMAND="fd --type d --hidden --strip-cwd-prefix --exclude .git --exclude .github"
 export FZF_CTRL_T_OPTS="--select-1 --exit-0"
@@ -94,34 +45,47 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap 
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --select-1 --exit-0"
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --ansi"
 
-paths=(
-  "$XDG_DATA_HOME/bin"
-  "$XDG_DATA_HOME"/go/bin
-  "$XDG_CONFIG_HOME"/emacs/bin
-  "$XDG_CONFIG_HOME"/miktex/bin
-  "$XDG_DATA_HOME"/npm/bin
-  "$XDG_DATA_HOME"/JetBrains/Toolbox/scripts
-  "$XDG_DATA_HOME"/bun/bin
-  "$XDG_DATA_HOME"/deno/bin
-  "$XDG_DATA_HOME"/juliaup/bin
-  "$XDG_DATA_HOME"/flutter/bin
-  "$XDG_DATA_HOME"/jdk-19.0.1/bin
-  "$XDG_DATA_HOME"/flutter/bin
-  "$HOMEBREW_PREFIX"/bin
-  "$HOMEBREW_PREFIX"/sbin
-  "/usr/local/cuda-12.4/bin"
-  "/usr/local/cuda/bin"
-  "/home/theo/.pub-cache/bin"
-)
+if [[ "$(uname -a)" == *WSL* ]]; then
+	machine="wsl"
+elif [[ -f /etc/fedora-release ]]; then
+	machine="fedora"
+else
+	machine="unknown"
+fi
 
-for entry in "${paths[@]}"; do
-  path=($entry $path)
-done
+case $machine in
+"wsl")
+	export UNISON="$XDG_CONFIG_HOME/unison"
+	export PATH=:$PATH
+	export EDITOR="$HOMEBREW_PREFIX/bin/nvim"
+	export VISUAL="$HOMEBREW_PREFIX/bin/nvim"
+	export DISPLAY=localhost:0
+	export WAYLAND_DISPLAY=$DISPLAY
+	export LIBGL_ALWAYS_INDIRECT=1
+	export XDG_SESSION_TYPE=x11
+	if [[ -n $SSH_TTY ]]; then
+		export HTTP_PROXY="http://127.0.0.0:7897"
+		export HTTPS_PROXY="http://127.0.0.1:7897"
+	fi
+	;;
+"fedora")
+	export HTTPS_PROXY=http://127.0.0.1:7897
+	export HTTP_PROXY=http://127.0.0.1:7897
+	export ALL_PROXY=socks5://127.0.0.1:7897
+	export NO_PROXY="127.0.0.1,::1,localhost"
+	export EDITOR="nvim"
+	export VISUAL="nvim"
+	;;
+esac
 
-envs=(
-  "$XDG_DATA_HOME/cargo/env"
-)
-for env in "${envs[@]}"; do
-  [ -f "$env" ] && . "$env"
-done
-unset env
+if ! shopt -oq posix; then
+	if [ -f /usr/share/bash-completion/bash_completion ]; then
+		. /usr/share/bash-completion/bash_completion
+	elif [ -f /etc/bash_completion ]; then
+		. /etc/bash_completion
+	fi
+fi
+
+if [[ -f "$XDG_CONFIG_HOME"/bash/bashrc ]]; then
+	source "$XDG_CONFIG_HOME"/bash/bashrc
+fi

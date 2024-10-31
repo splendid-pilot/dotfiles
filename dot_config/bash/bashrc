@@ -1,0 +1,60 @@
+#!/bin/bash
+case $- in
+*i*) ;;
+*) return ;;
+esac
+
+paths=(
+	"$HOME/.local/bin"
+	"$XDG_DATA_HOME"/go/bin
+	"$XDG_CONFIG_HOME"/emacs/bin
+	"$XDG_CONFIG_HOME"/miktex/bin
+	"$XDG_DATA_HOME"/npm/bin
+	"$XDG_DATA_HOME"/JetBrains/Toolbox/scripts
+	"$XDG_DATA_HOME"/bun/bin
+	"$XDG_DATA_HOME"/deno/bin
+	"$XDG_DATA_HOME"/juliaup/bin
+	"$XDG_DATA_HOME"/flutter/bin
+	"$XDG_DATA_HOME"/jdk-19.0.1/bin
+	"$XDG_DATA_HOME"/flutter/bin
+	"$HOMEBREW_PREFIX"/bin
+	"$HOMEBREW_PREFIX"/sbin
+	"/usr/local/cuda-12.3/bin"
+	"/usr/local/cuda-12.4/bin"
+	"/usr/local/cuda/bin"
+	"/home/theo/.pub-cache/bin"
+)
+
+new_path=""
+
+for path in "${paths[@]}"; do
+	if [ -d "$path" ] && [[ ":$PATH:" != *":$path:"* ]]; then
+		new_path="$path:$new_path"
+	fi
+done
+
+new_path=${new_path%:}
+if [ -n "$new_path" ]; then
+	PATH="$PATH:$new_path"
+fi
+
+export PATH
+
+envs=(
+	"XDG_DATA_HOME"/cargo/env
+)
+for env in "${envs[@]}"; do
+	if [ -f env ]; then
+		. "$env"
+	fi
+done
+unset env
+
+if [ -d "$XDG_CONFIG_HOME"/bash ]; then
+	for rc in "$XDG_CONFIG_HOME"/bash/bashrc.d/*; do
+		if [ -f "$rc" ]; then
+			. "$rc"
+		fi
+	done
+fi
+unset rc

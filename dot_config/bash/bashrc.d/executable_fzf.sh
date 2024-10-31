@@ -5,7 +5,6 @@ export FZF_ALT_C_COMMAND="fd --type d --hidden --strip-cwd-prefix --exclude .git
 export FZF_CTRL_T_OPTS="--select-1 --exit-0"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --select-1 --exit-0"
-[ -x ~/.local/bin/fzf ] && eval "$(fzf --bash)"
 
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal

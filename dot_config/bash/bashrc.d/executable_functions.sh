@@ -23,11 +23,3 @@ yy() {
 	fi
 	rm -f -- "$tmp"
 }
-
-vg() {
-	local config
-	config=$(fd --max-depth 1 --glob 'nvim*' ~/.config | gum choose --header="Choose which neovim distribution to run." --header.foreground="150" --limit=1)
-
-	[[ -z $config ]] && echo "No config selected" && return
-	NVIM_APPNAME=$(basename "$config") nvim "$@"
-}
