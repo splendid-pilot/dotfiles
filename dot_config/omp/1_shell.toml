@@ -1,0 +1,131 @@
+#:schema https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
+console_title_template = "{{ .Folder }}"
+version = 2.0
+
+[[blocks]]
+alignment = "left"
+newline = true
+type = "prompt"
+
+[[blocks.segments]]
+foreground = "#ffbebc"
+leading_diamond = "<#ff70a6> \ue200 </>"
+style = "diamond"
+template = "{{ .UserName }} <#ffffff>on</>"
+type = "session"
+[blocks.segments.properties]
+display_host = true
+
+[[blocks.segments]]
+foreground = "#bc93ff"
+style = "diamond"
+template = " {{ .CurrentDate | date .Format }} "
+type = "time"
+[blocks.segments.properties]
+time_format = "Monday <#ffffff>at</> 3:04 PM"
+
+[[blocks.segments]]
+foreground = "#ee79d1"
+style = "diamond"
+template = " {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} "
+type = "git"
+[blocks.segments.properties]
+branch_icon = "\ue725 "
+fetch_stash_count = true
+fetch_status = true
+fetch_upstream_icon = true
+fetch_worktree_count = true
+
+[[blocks.segments]]
+foreground = "#3C873A"
+style = "diamond"
+template = "\ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} "
+type = "node"
+[blocks.segments.properties]
+fetch_package_manager = false
+npm_icon = " <#cc3a3a>\ue5fa</> "
+yarn_icon = " <#348cba>\ue6a7</> "
+
+[[blocks.segments]]
+foreground = "#FFE873"
+style = "diamond"
+template = "\ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}"
+type = "python"
+[blocks.segments.properties]
+fetch_version = false
+display_default = false
+[[blocks.segments]]
+foreground = "#06aad5"
+style = "diamond"
+template = "\ue627 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
+type = "go"
+
+[[blocks.segments]]
+foreground = "#925837"
+style = "diamond"
+template = "\ue7a8 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
+type = "rust"
+[[blocks]]
+alignment = "right"
+type = "prompt"
+
+[[blocks.segments]]
+foreground = "#a9ffb4"
+style = "plain"
+type = "text"
+
+[[blocks.segments]]
+foreground = "#a9ffb4"
+style = "diamond"
+template = " {{ .FormattedMs }}s <#ffffff>\ue601</>"
+type = "executiontime"
+[blocks.segments.properties]
+style = "dallas"
+threshold = 0.0
+
+[[blocks.segments]]
+style = "diamond"
+template = " \uf0e7 "
+type = "root"
+[blocks.segments.properties]
+root_icon = "\uf292 "
+
+[[blocks.segments]]
+foreground = "#94ffa2"
+style = "diamond"
+template = " <#ffffff>MEM:</> {{ round .PhysicalPercentUsed .Precision }}% ({{ (div ((sub .PhysicalTotalMemory .PhysicalFreeMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}GB)"
+type = "sysinfo"
+
+[[blocks]]
+alignment = "left"
+newline = true
+type = "prompt"
+
+[[blocks.segments]]
+foreground = "#ffafd2"
+leading_diamond = "<#00c7fc> \ue285 </><#ffafd2>{</>"
+style = "diamond"
+template = " \ue5ff {{ .Path }} "
+trailing_diamond = "<#ffafd2>}</>"
+type = "path"
+[blocks.segments.properties]
+folder_icon = "..."
+folder_separator_icon = " \uebcb "
+home_icon = "home"
+style = "agnoster_short"
+
+[[blocks.segments]]
+foreground = "#A9FFB4"
+foreground_templates = ["{{ if gt .Code 0 }}#ef5350{{ end }}"]
+style = "plain"
+template = " \ue286 "
+type = "status"
+[blocks.segments.properties]
+always_enabled = true
+
+[transient_prompt]
+background = "transparent"
+foreground = "#FEF5ED"
+template = "\ue285 "

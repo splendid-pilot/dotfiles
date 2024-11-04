@@ -77,7 +77,7 @@ config.inactive_pane_hsb = {
 	saturation = 0.9,
 	brightness = 0.8,
 }
-config.default_prog = { "pwsh", "-nologo" }
+config.default_prog = { "nu" }
 config.default_cwd = "~"
 config.use_ime = true
 config.window_close_confirmation = "NeverPrompt"

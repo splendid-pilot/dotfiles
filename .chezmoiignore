@@ -4,23 +4,15 @@ README.md
 {{ if eq .machine "linux-wsl" }}
 .config/*
 .config/nvim/lua/plugins/kitty-scrollback.lua
-!.config/{arai2,atuin,bash,bottom,chezmoi,conda,doom,fd,fish,helix,lsd,nvim,yazi,zsh,oh-my-posh}
+!.config/{arai2,atuin,bash,bottom,nushell,omp,conda,doom,fd,fish,helix,lsd,nvim,yazi,zsh,oh-my-posh}
 {{ end }}
 
 # Windows-specific settings
 {{ if eq .machine "windows" }}
 .zshenv
-.local/
 .config/*
-!.config/{yasb,lsd,nvim}
+!.config/{yasb,lsd,nvim,nushell,omp}
 .bashrc
-*.ps1
-*.ahk
-.wezterm.lua
-komorebi.*
-Documents/**
-AppData/**
-.config/yasb/
 {{ end }}
 
 # Exclude PowerShell and other Windows-only files on non-Windows systems
