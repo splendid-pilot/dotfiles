@@ -46,46 +46,46 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200' --select-1 --exit-0"
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --ansi"
 
 if [[ "$(uname -a)" == *WSL* ]]; then
-	machine="wsl"
+  machine="wsl"
 elif [[ -f /etc/fedora-release ]]; then
-	machine="fedora"
+  machine="fedora"
 else
-	machine="unknown"
+  machine="unknown"
 fi
 
 case $machine in
-"wsl")
-	export UNISON="$XDG_CONFIG_HOME/unison"
-	export PATH=:$PATH
-	export EDITOR="$HOMEBREW_PREFIX/bin/nvim"
-	export VISUAL="$HOMEBREW_PREFIX/bin/nvim"
-	export DISPLAY=localhost:0
-	export WAYLAND_DISPLAY=$DISPLAY
-	export LIBGL_ALWAYS_INDIRECT=1
-	export XDG_SESSION_TYPE=x11
-	if [[ -n $SSH_TTY ]]; then
-		export HTTP_PROXY="http://127.0.0.0:7897"
-		export HTTPS_PROXY="http://127.0.0.1:7897"
-	fi
-	;;
-"fedora")
-	export HTTPS_PROXY=http://127.0.0.1:7897
-	export HTTP_PROXY=http://127.0.0.1:7897
-	export ALL_PROXY=socks5://127.0.0.1:7897
-	export NO_PROXY="127.0.0.1,::1,localhost"
-	export EDITOR="nvim"
-	export VISUAL="nvim"
-	;;
+  "wsl")
+    export UNISON="$XDG_CONFIG_HOME/unison"
+    export PATH=:$PATH
+    export EDITOR="$HOMEBREW_PREFIX/bin/nvim"
+    export VISUAL="$HOMEBREW_PREFIX/bin/nvim"
+    export DISPLAY=localhost:0
+    export WAYLAND_DISPLAY=$DISPLAY
+    export LIBGL_ALWAYS_INDIRECT=1
+    export XDG_SESSION_TYPE=x11
+    if [[ -n $SSH_TTY ]]; then
+      export HTTP_PROXY="http://127.0.0.0:7897"
+      export HTTPS_PROXY="http://127.0.0.1:7897"
+    fi
+    ;;
+  "fedora")
+    export HTTPS_PROXY=http://127.0.0.1:7897
+    export HTTP_PROXY=http://127.0.0.1:7897
+    export ALL_PROXY=socks5://127.0.0.1:7897
+    export NO_PROXY="127.0.0.1,::1,localhost"
+    export EDITOR="nvim"
+    export VISUAL="nvim"
+    ;;
 esac
 
 if ! shopt -oq posix; then
-	if [ -f /usr/share/bash-completion/bash_completion ]; then
-		. /usr/share/bash-completion/bash_completion
-	elif [ -f /etc/bash_completion ]; then
-		. /etc/bash_completion
-	fi
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
 fi
 
 if [[ -f "$XDG_CONFIG_HOME"/bash/bashrc ]]; then
-	source "$XDG_CONFIG_HOME"/bash/bashrc
+  source "$XDG_CONFIG_HOME"/bash/bashrc
 fi

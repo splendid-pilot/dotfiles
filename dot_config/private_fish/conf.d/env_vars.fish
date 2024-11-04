@@ -24,7 +24,7 @@ set -gx NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME/npm/npmrc"
 set -gx IPYTHONDIR "$XDG_CONFIG_HOME/ipython"
 set -gx BUNDLE_USER_PLUGIN "$XDG_DATA_HOME/bundle"
 set -gx ANSIBLE_HOME "$XDG_DATA_HOME/ansible"
-set -gx CLICOLOR_FORCE 1
+# set -gx CLICOLOR_FORCE 1
 
 if uname -a | string match -q '*WSL*'
     set machine wsl
@@ -48,7 +48,7 @@ switch $machine
         set -gx WAYLAND_DISPLAY "$DISPLAY"
         set -gx LIBGL_ALWAYS_INDIRECT 1
         set -gx XDG_SESSION_TYPE x11
-        if test -z "$SSH_TTY"
+        if test -n "$SSH_TTY"
             set -gx HTTP_PROXY "http://127.0.0.1:7897"
             set -gx HTTPS_PROXY "http://127.0.0.1:7897"
             set -gx ALL_PROXY "socks5://127.0.0.1:7897"

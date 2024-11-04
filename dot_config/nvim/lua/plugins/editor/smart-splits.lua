@@ -1,6 +1,7 @@
 return {
 	"mrjones2014/smart-splits.nvim",
-	lazy = true,
+	build = "./kitty/install-kittens.bash",
+	lazy = false,
 	cond = not vim.g.vscode,
 	event = { "CursorHoldI", "CursorHold" },
 	opts = {

@@ -24,6 +24,6 @@ abbr -a gaa git add --all
 abbr -a gl git pull
 abbr -a gp git push
 abbr -a glog git log --oneline --decorate --graph
-abbr -a grs git resotre
+abbr -a grs git restore
 abbr -a gst git status
 abbr -a gf git fetch

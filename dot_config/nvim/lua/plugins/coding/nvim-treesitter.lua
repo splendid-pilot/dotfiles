@@ -1,7 +1,8 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	dependencies = {
-		{ "nushell/tree-sitter-nu", "NoahTheDuke/vim-just" },
+		{ "NoahTheDuke/vim-just" },
+		{ "nushell/tree-sitter-nu", build = ":TSUpdate nu" },
 	},
 	opts = function(_, _)
 		local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
