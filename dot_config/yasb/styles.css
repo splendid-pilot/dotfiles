@@ -1,321 +1,259 @@
 /*
-.widget .label {} -> Global label for all
-.active-window-widget {} -> Styles specific to the active window widget
-.clock-widget {} -> Styles specific to the clock widget
-.cpu-widget {} -> Styles specific to the CPU widget
-.memory-widget {} -> Styles specific to the memory widget
-.weather-widget {} -> Styles specific to the weather widget
-.komorebi-workspaces {} -> Styles specific to komorebi workspaces
-.komorebi-active-layout {} -> Styles specific to komorebi active layout
-.volume-widget {} -> Styles specific to the volume widget 
-.apps-widget {} -> Styles specific to the apps widget
-.power-menu-widget {} -> Styles for the power menu button widget
-.power-menu-popup {} -> Styles for the power menu popup widget
-.power-menu-popup > .button {} -> Styles for power buttons inside the popup 
-.power-menu-popup > .button > .icon,
-.power-menu-popup > .button > .label {} -> Styles for power buttons icons and labels inside the popup 
-.media-widget {} -> Styles specific to the media widget
-.github-widget {} -> Styles specific to the github widget
-.language-widget {} -> Styles specific to the language widget
-.disk-widget {} -> Styles specific to the disk widget
+A version of Nord's arctic, north-bluish color palette, 
+with a Nord4 based colour pallete for light mode, 
+and a Nord0 based colour pallete for dark mode.
+
+:root {
+	--nord0: rgb(46, 52, 64); // Darkest Night
+	--nord1: rgb(59, 66, 82);
+	--nord2: rgb(67, 76, 94);
+	--nord3: rgb(76, 86, 106); // Lightest Night
+  
+	--nord4: rgb(216, 222, 233); // Darkest Snow
+	--nord5: rgb(229, 233, 240);
+	--nord6: rgb(236, 239, 244); // Lighest Snow
+	
+	--nord7: rgb(143, 188, 187); // Light Frost
+	--nord8: rgb(136, 192, 208); // Lightest Frost
+	--nord9: rgb(129, 161, 193); // Dark Frost
+	--nord10: rgb(94, 129, 172); // Darkest Frost
+
+--nord11: rgb(191, 97, 106);  // Red
+	--nord12: rgb(208, 135, 112); // Orange
+	--nord13: rgb(235, 203, 139); // Yellow
+	--nord14: rgb(163, 190, 140); // Green
+	--nord15: rgb(180, 142, 173); // Magenta
+}
 */
+
 * {
   font-size: 12px;
-  color: #cdd6f4;
+  color: rgb(76, 86, 106);
   font-weight: 500;
   font-family: "FiraCode Nerd Font Mono", "LXGW WenKai", "YouYuan";
   margin: 0;
   padding: 0;
 }
+
 .yasb-bar {
   padding: 0;
   margin: 0;
+  background-color: rgb(216, 222, 233);
+  border-radius: 5px;
 }
+
 .widget {
-  background-color: #1e1e2e;
   padding: 0 8px;
-  margin: 0;
+  margin: 0 4px;
 }
 .widget .label {
-  padding: 1px 2px 1px 2px;
+  padding: 0px 2px;
 }
 .widget .label.alt {
-  padding: 1px 8px 1px 8px;
+  padding: 0px 8px;
 }
+
 .active-window-widget {
-  border-radius: 18px;
+  border-radius: 4px;
   margin-left: 8px;
 }
-.container-left,
-.container-center,
-.container-right {
-  margin: 0;
-  padding: 0;
-}
 
-.clock-widget {
-  border-top-left-radius: 18px;
-  border-bottom-left-radius: 18px;
-}
-
-.apps-widget {
-  padding: 0 2px;
-  border-top-right-radius: 18px;
-  border-bottom-right-radius: 18px;
-}
-.komorebi-active-layout {
-  border-top-right-radius: 18px;
-  border-bottom-right-radius: 18px;
-  padding: 0 4px 0 0;
-}
-
-.komorebi-active-layout .label {
-  font-weight: 600;
-  padding: 2px 0 0 0;
-}
-.wifi-widget {
-  padding: 0 4px 0 4px;
-  border-top-left-radius: 18px;
-  border-bottom-left-radius: 18px;
-}
-
-.apps-widget .widget-container,
-.komorebi-workspaces .widget-container,
-.wifi-widget .widget-container,
-.komorebi-active-layout .widget-container {
-  background-color: #313244;
-  margin: 4px 0px 4px 0;
-  border-radius: 14px;
-}
-.apps-widget .widget-container {
-  margin-right: 2px;
+.komorebi-workspaces {
+  margin: 4px 4px;
+  border-radius: 4px;
+  padding: 4px 0;
 }
 .komorebi-workspaces .ws-btn {
-  font-size: 16px;
-  background-color: transparent;
-  margin: 0 4px 0 4px;
-  color: #95a0ad;
+  font-size: 12px;
+  border: none;
+  color: rgb(76, 86, 106);
+  padding: 0 8px 0 8px;
+}
+.komorebi-workspaces .ws-btn:hover {
+  color: rgb(46, 52, 64);
 }
 .komorebi-workspaces .ws-btn.populated {
-  color: #a0c3ee;
-}
-.komorebi-workspaces .ws-btn:hover,
-.komorebi-workspaces .ws-btn.populated:hover,
-.komorebi-workspaces .ws-btn.active {
-  color: #c2daf7;
-}
-/* .komorebi-workspaces .ws-btn {
-	border-radius: 5px;
-	font-size: 10px;
-	width: 10px;
-	height: 10px;
-	margin: 0 4px 0 4px;
-	color: rgba(255, 255, 255, 0);
-	background-color: #9399b2;
-}
-.komorebi-workspaces .ws-btn:hover,
-.komorebi-workspaces .ws-btn.populated:hover {
-	background-color: #fff;
-}
-.komorebi-workspaces .ws-btn.populated {
-	background-color: #89b4fa;
+  color: rgb(76, 86, 106);
 }
 .komorebi-workspaces .ws-btn.active {
-	background-color: #89b4fa;
-	color: rgba(0, 0, 0, 0);
-	width: 26px;
-} */
-.apps-widget .label {
-  font-size: 14px;
-  padding: 0 2px;
-}
-.apps-widget .label:hover {
-  color: #fff;
+  color: rgb(129, 161, 193);
 }
 
-/*POWER MENU WIDGET*/
-/* Uptime text */
+/* Blue Power Button: rgb(94, 129, 172); */
+.power-menu-widget .label {
+  color: rgb(191, 97, 106);
+  font-size: 16px;
+  padding-right: 4px;
+}
+
 .uptime {
   font-size: 14px;
   margin-bottom: 10px;
-  color: #ffffff;
+  color: rgb(216, 222, 233);
   font-weight: 600;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-.power-menu-widget .label {
-  color: #f38ba8;
-  font-size: 13px;
 }
 .power-menu-popup {
-  background-color: rgba(24, 24, 37, 0.9);
-  border-radius: 12px;
-  border: 4px solid rgb(41, 42, 58);
+  background-color: rgb(46, 52, 64);
+  border-radius: 6px;
 }
 .power-menu-popup .button {
-  padding: 0;
   width: 240px;
   height: 120px;
   border-radius: 8px;
-  background-color: rgb(41, 42, 58);
-  font-family: "SegoeUI";
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgb(59, 66, 82);
+  color: rgb(229, 233, 240);
   margin: 8px;
 }
 .power-menu-popup .button.hover {
-  background-color: rgb(55, 56, 75);
-  border: 1px solid rgb(55, 56, 75);
+  background-color: rgb(76, 86, 106);
 }
 .power-menu-popup .button .label {
   margin-bottom: 8px;
   font-size: 16px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.95);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(216, 222, 233);
 }
+
 .power-menu-popup .button .icon {
   font-size: 48px;
-  padding-top: 8px;
-  color: rgba(255, 255, 255, 0.25);
+  padding-top: 12px;
+  padding-right: 8px;
+  color: rgb(229, 233, 240);
 }
 .power-menu-popup .button.cancel .icon {
-  color: rgba(243, 139, 168, 0.55);
+  color: rgb(94, 129, 172);
 }
 .power-menu-popup .button.cancel .label {
-  color: rgba(243, 139, 168, 0.95);
+  color: rgb(94, 129, 172);
 }
+
+/* Blue Power Button: rgb(143, 188, 187); */
 .power-menu-popup .button.shutdown .icon {
-  color: rgba(137, 180, 250, 0.55);
+  color: rgb(191, 97, 106);
 }
 .power-menu-popup .button.shutdown .label {
-  color: rgba(137, 180, 250, 0.95);
+  color: rgb(191, 97, 106);
 }
 
 /* ICONS */
 .icon {
   font-size: 16px;
+  margin-right: 4px;
 }
-.volume-widget .icon {
-  color: #89b4fa;
-  margin: 1px 2px 0 0;
+.cpu-widget .icon {
+  font-size: 14px;
+  color: rgb(163, 190, 140);
 }
-.cpu-widget .icon,
+
 .memory-widget .icon {
-  font-size: 16px;
-  color: #cba6f7;
-  margin: 0 2px 1px 0;
-}
-.memory-widget .icon {
-  color: #a6c9f7;
-}
-.wifi-widget .icon {
-  color: #43d8d8;
-  padding: 0 7px;
-  margin: 0;
+  font-size: 14px;
+  color: rgb(208, 135, 112);
 }
 
-/* Memory widget usage colors. Uncomment if you want to color of the battery widget icon to change based on status */
-
-.memory-widget.status-low .icon {
-  color: #a6e3a1;
-}
-.memory-widget.status-medium .icon {
-  color: #f9e2af;
-}
-.memory-widget.status-high .icon {
-  color: #fab387;
-}
-.memory-widget.status-critical .icon {
-  color: #f38ba8;
-}
-
-/* Battery widget value colors. Uncomment if you want to color of the battery widget icon to change based on status */
-
-/*
-.battery-widget.status-charging .icon {
-  color: #74c7ec;
-}
-.battery-widget.status-full .icon {
-  color: #94e2d5;
-}
-.battery-widget.status-high .icon {
-  color: #a6e3a1;
-}
-.battery-widget.status-medium .icon {
-  color: #f9e2af;
-}
-.battery-widget.status-low .icon {
-  color: #fab387;
-}
-.battery-widget.status-critical .icon {
-  color: #f38ba8;
-}
-*/
-
-/* WEATHER WIDGET */
+.weather-widget .label,
 .weather-widget .icon {
-  font-size: 22px;
-  margin: 0 2px 1px 0;
+  color: rgb(235, 203, 139);
 }
-.weather-widget .icon.sunnyDay {
-  color: rgb(221, 210, 107);
+.weather-widget .icon {
+  font-size: 16px;
 }
 .weather-widget .icon.clearNight {
-  color: rgb(107, 189, 221);
-  font-size: 22px;
-  margin: 1px 2px 0px 0;
+  font-size: 16px;
 }
-/* 
-.weather-widget .icon.cloudyDay {}
-.weather-widget .icon.cloudyNight {} 
-.weather-widget .icon.rainyDay {} 
-.weather-widget .icon.rainyNight {} 
-.weather-widget .icon.snowyIcyDay {} 
-.weather-widget .icon.snowyIcyNight {} 
-.weather-widget .icon.blizzard {} 
-.weather-widget .icon.default {}
-*/
+.weather-widget .icon.cloudyNight {
+  font-size: 18px;
+}
 
-/* MEDIA WIDGET */
+.volume-widget .icon {
+  color: rgb(129, 161, 193);
+}
+
+.taskbar-widget .app-icon {
+  padding: 0 6px;
+  border: none;
+  margin: 0;
+}
+
+/* NEW MEDIA WIDGET */
 .media-widget {
   padding: 0;
-  padding-left: 2px;
   margin: 0;
-  border-radius: 16px;
-  margin-right: 8px;
+  border-radius: 0;
 }
 .media-widget .label {
-  background-color: rgba(0, 0, 0, 0);
+  color: rgb(46, 52, 64);
+  padding: 0 4px;
+  font-size: 11px;
 }
 .media-widget .btn {
-  color: #acb2c9;
+  color: rgb(76, 86, 106);
   padding: 0 3px;
   margin: 4px 0;
-  font-family: Segoe Fluent Icons;
 }
 .media-widget .btn:hover {
-  color: #89b4fa;
+  color: rgb(46, 52, 64);
 }
 .media-widget .btn.play {
-  background-color: #313244;
-  border-radius: 14px;
   font-size: 16px;
 }
 .media-widget .btn.disabled:hover,
 .media-widget .btn.disabled {
-  color: #4e525c;
+  color: rgb(76, 86, 106);
   font-size: 12px;
-  background-color: rgba(0, 0, 0, 0);
 }
 
-/* GITHUB WIDGET */
-.github-widget {
-  padding: 0 4px;
+/* SYSTEM WIDGET */
+/* Grey Sys Widget: Remove colour attribute */
+.system-widget .label {
+  font-size: 24px;
+  color: rgb(94, 129, 172);
 }
-.github-widget .icon {
-  font-size: 14px;
-  color: #cdd6f4;
+
+/* DARK THEME BELOW */
+
+*.dark .label {
+  color: rgb(236, 239, 244);
 }
-.github-widget .icon.new-notification {
-  color: #f38ba8;
+
+.yasb-bar.dark {
+  background-color: rgb(46, 52, 64);
+}
+
+*.dark .komorebi-workspaces .ws-btn {
+  color: rgb(76, 86, 106);
+}
+*.dark .komorebi-workspaces .ws-btn:hover {
+  color: rgb(129, 161, 193);
+}
+*.dark .komorebi-workspaces .ws-btn.populated {
+  color: rgb(76, 86, 106);
+}
+*.dark .komorebi-workspaces .ws-btn.active {
+  color: rgb(129, 161, 193);
+}
+
+/* Blue Power Button: rgb(94, 129, 172); */
+*.dark .power-menu-widget .label {
+  color: rgb(191, 97, 106);
+}
+
+/* NEW MEDIA WIDGET */
+*.dark .media-widget .label {
+  color: rgb(216, 222, 233);
+}
+*.dark .media-widget .btn {
+  color: rgb(216, 222, 233);
+}
+*.dark .media-widget .btn:hover {
+  color: rgb(236, 239, 244);
+}
+*.dark .media-widget .btn.disabled:hover,
+*.dark .media-widget .btn.disabled {
+  color: rgb(216, 222, 233);
+}
+
+/* SYSTEM WIDGET */
+/* Grey Sys Widget: Remove colour attribute */
+*.dark .system-widget .label {
+  font-size: 24px;
+  color: rgb(94, 129, 172);
 }

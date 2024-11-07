@@ -18,7 +18,19 @@ local night_schemes = {
 	"Tokyo Night Storm (Gogh)",
 }
 
-config.color_scheme = night_schemes[math.random(1, #night_schemes)]
+local light_shcemes = {
+	"Catppuccin Latte",
+	"Catppuccin Latte (Gogh)",
+	"Tokyo Night Day",
+	"Tokyo Night Light (Gogh)",
+	"tokyonight-day",
+}
+local time = os.date("*t", os.time())
+if time.hour >= 17 then
+	config.color_scheme = night_schemes[math.random(1, #night_schemes)]
+else
+	config.color_scheme = light_shcemes[math.random(1, #light_shcemes)]
+end
 config.font = wezterm.font_with_fallback({
 	{ family = "FiraCode Nerd Font", weight = "Bold" },
 	{ family = "LXGW WenKai", weight = "Bold" },

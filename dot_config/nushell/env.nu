@@ -22,6 +22,7 @@ $env.NU_PLUGIN_DIRS = [
   ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
 
+$env.VIRTUAL_ENV_DISABLE_PROMPT = true
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 # An alternate way to add entries to $env.PATH is to use the custom command `path add`
@@ -48,9 +49,7 @@ if (cmd-exists "zoxide") {
   zoxide init nushell | save -f ($tool_dir|path join zoxide.nu)
 }
 
-if $env.OS starts-with 'Windows' {
-  if (cmd-exists "oh-my-posh") {
-    oh-my-posh init nu --config ($env.XDG_CONFIG_HOME | path join omp tokoyonight.json) --print | save -f ($tool_dir|path join omp.nu)
-  }
+if (cmd-exists "oh-my-posh") {
+  oh-my-posh init nu --config ($env.XDG_CONFIG_HOME | path join omp tokoyonight.json) --print | save -f ($tool_dir|path join omp.nu)
 }
 

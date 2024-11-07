@@ -205,12 +205,12 @@ $env.config = {
   history: {
     max_size: 100_000 # Session has to be reloaded for this to take effect
     sync_on_enter: true # Enable to share history between multiple sessions, else you have to close the session to write history to file
-    file_format: "plaintext" # "sqlite" or "plaintext"
+    file_format: "sqlite" # "sqlite" or "plaintext"
     isolation: false # only available with sqlite file_format. true enables history isolation, false disables it. true will allow the history to be isolated to the current session using up/down arrows. false will allow the history to be shared across all sessions.
   }
 
   completions: {
-    case_sensitive: true # set to true to enable case-sensitive completions
+    case_sensitive: false # set to true to enable case-sensitive completions
     quick: true    # set this to false to prevent auto-selecting completions when only one remains
     partial: true    # set this to false to prevent partial filling of the prompt
     algorithm: "prefix"    # prefix or fuzzy
@@ -224,7 +224,7 @@ $env.config = {
   }
 
   filesize: {
-    metric: false # true => KB, MB, GB (ISO standard), false => KiB, MiB, GiB (Windows standard)
+    metric: true # true => KB, MB, GB (ISO standard), false => KiB, MiB, GiB (Windows standard)
     format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, auto
   }
 
@@ -234,7 +234,7 @@ $env.config = {
     vi_normal: underscore # block, underscore, line, blink_block, blink_underscore, blink_line, inherit to skip setting cursor shape (underscore is the default)
   }
 
-  color_config: $dark_theme # if you want a more interesting theme, you can replace the empty record with `$dark_theme`, `$light_theme` or another custom record
+  color_config: $light_theme # if you want a more interesting theme, you can replace the empty record with `$dark_theme`, `$light_theme` or another custom record
   footer_mode: 25 # always, never, number_of_rows, auto
   float_precision: 2 # the precision for displaying floats in tables
   buffer_editor: null # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
@@ -924,11 +924,8 @@ alias glog    = git log --oneline --decorate --graph
 alias ghce    = gh copilot explain
 alias ghcs    = gh copilot suggest
 
-
-if $env.OS starts-with 'Windows' {
-  if (cmd-exists "oh-my-posh") {
-    source ($nu.default-config-dir | path join tools omp.nu)
-  }
+if (cmd-exists "oh-my-posh") {
+  source ($nu.default-config-dir | path join tools omp.nu)
 }
 
 if (cmd-exists "carapace") {
