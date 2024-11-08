@@ -227,3 +227,6 @@
 ;; (use-package! svg-tag-mode
 ;;   :hook org
 ;;   )
+(setq shell-file-name (executable-find "zsh"))
+(setq-default vterm-shell (executable-find "fish"))
+(setq-default explicit-shell-file-name (executable-find "fish"))

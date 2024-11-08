@@ -25,7 +25,7 @@ rofi_cmd() {
         -m "$monitor" \
         -theme "${dir}"/${theme}.rasi
       ;;
-    "i3")
+    "i3" | "gnome-xorg" | "gnome")
       rofi -dmenu \
         -p "Uptime: $uptime" \
         -mesg "Uptime: $uptime" \

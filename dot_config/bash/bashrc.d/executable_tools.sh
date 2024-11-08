@@ -20,5 +20,5 @@ if command -v fzf >/dev/null; then
 fi
 
 if command -v oh-my-posh >/dev/null; then
-  eval "$(oh-my-posh init bash --config "$XDG_CONFIG_HOME"/omp/1_shell.toml)"
+  eval "$(oh-my-posh init bash --config "$XDG_CONFIG_HOME"/omp/tokoyonight.json)"
 fi

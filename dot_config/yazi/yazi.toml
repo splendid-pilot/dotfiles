@@ -22,4 +22,7 @@ edit = [
   { run = "nvim %*", block = true, for = "windows" },
 ]
 [open]
-prepend_rules = [{ name = "*.toml", use = "edit" }]
+prepend_rules = [
+  { name = "*.toml", use = "edit" },
+  { name = "*.epub", use = "open" },
+]

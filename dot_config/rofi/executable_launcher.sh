@@ -10,7 +10,7 @@ case ${DESKTOP_SESSION} in
       -m "$monitor" \
       -theme "${dir}"/${theme}.rasi
     ;;
-  "i3")
+  "i3" | "gnome-xorg" | "gnome")
     rofi \
       -show drun \
       -theme "${dir}"/${theme}.rasi
