@@ -89,3 +89,14 @@ if vim.g.is_windows then
   -- end
   -- shell_config()
 end
+
+if vim.g.is_windows or (vim.g.is_wsl and not vim.g.is_ssh_session) then
+  local hour = os.date("*t", os.time()).hour
+  vim.schedule(function()
+    if hour < 18 then
+      vim.o.background = "light"
+    else
+      vim.o.background = "dark"
+    end
+  end)
+end

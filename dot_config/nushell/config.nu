@@ -249,7 +249,7 @@ $env.config = {
     # osc8 is also implemented as the deprecated setting ls.show_clickable_links, it shows clickable links in ls output if your terminal supports it. show_clickable_links is deprecated in favor of osc8
     osc8: true
     # osc9_9 is from ConEmu and is starting to get wider support. It's similar to osc7 in that it communicates the path to the terminal
-    osc9_9: false
+    osc9_9: true
     # osc133 is several escapes invented by Final Term which include the supported ones below.
     # 133;A - Mark prompt start
     # 133;B - Mark prompt end
@@ -270,8 +270,8 @@ $env.config = {
     reset_application_mode: true
   }
   render_right_prompt_on_last_line: false # true or false to enable or disable right prompt to be rendered on last line of the prompt.
-  use_kitty_protocol: false # enables keyboard enhancement protocol implemented by kitty console, only if your terminal support this.
-  highlight_resolved_externals: false # true enables highlighting of external commands in the repl resolved by which.
+  use_kitty_protocol: true # enables keyboard enhancement protocol implemented by kitty console, only if your terminal support this.
+  highlight_resolved_externals: true # true enables highlighting of external commands in the repl resolved by which.
   recursion_limit: 50 # the maximum number of times nushell allows recursion before stopping it
 
   plugins: {} # Per-plugin configuration. See https://www.nushell.sh/contributor-book/plugins.html#configuration.
@@ -905,7 +905,7 @@ alias ccd     = chezmoi cd
 alias can     = chezmoi apply -nv
 alias capply  = chezmoi apply -v
 alias cdiff   = chezmoi diff
-alias creadd  = chezmoi status | lines | each { split row ' ' | skip 1| str join} | str join ' ' | chezmoi re-add
+alias creadd  = chezmoi status | lines | each { split row ' ' | skip 1 | str join} | str join ' ' | chezmoi re-add
 alias cforget = chezmoi forget
 alias cgp     = chezmoi git push
 alias cgl     = chezmoi git pull

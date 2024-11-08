@@ -31,7 +31,7 @@
   "transient_prompt": {
     "template": "➜ ",
     "foreground": "p:terminal-blue",
-    "background": "p:t-background"
+    "background": "transparent"
   },
   "error_line": {
     "template": "<#eb6f92,#286983>\ue009 </><#286983,transparent>\ue0b4</> ",

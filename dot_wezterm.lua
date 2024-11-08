@@ -1,36 +1,43 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
--- config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
-math.randomseed(os.time()) -- seed the random number generator
-
-local night_schemes = {
-	"Dracula (Official)",
-	"Catppuccin Frappé (Gogh)",
-	"Catppuccin Frappe",
-	"Catppuccin Macchiato",
-	"Catppuccin Macchiato (Gogh)",
-	"Catppuccin Mocha",
-	"Catppuccin Mocha (Gogh)",
-	"Tokyo Night",
-	"Tokyo Night (Gogh)",
-	"Tokyo Night Moon",
-	"Tokyo Night Storm",
-	"Tokyo Night Storm (Gogh)",
-}
-
-local light_shcemes = {
-	"Catppuccin Latte",
-	"Catppuccin Latte (Gogh)",
-	"Tokyo Night Day",
-	"Tokyo Night Light (Gogh)",
-	"tokyonight-day",
-}
-local time = os.date("*t", os.time())
-if time.hour >= 17 then
-	config.color_scheme = night_schemes[math.random(1, #night_schemes)]
-else
-	config.color_scheme = light_shcemes[math.random(1, #light_shcemes)]
+local function get_appearance()
+	if wezterm.gui then
+		return wezterm.gui.get_appearance()
+	end
+	return "Dark"
 end
+local function scheme_for_appearance(appearance)
+	math.randomseed(os.time()) -- seed the random number generator
+
+	local night_schemes = {
+		"Dracula (Official)",
+		"Catppuccin Frappé (Gogh)",
+		"Catppuccin Frappe",
+		"Catppuccin Macchiato",
+		"Catppuccin Macchiato (Gogh)",
+		"Catppuccin Mocha",
+		"Catppuccin Mocha (Gogh)",
+		"Tokyo Night",
+		"Tokyo Night (Gogh)",
+		"Tokyo Night Moon",
+		"Tokyo Night Storm",
+		"Tokyo Night Storm (Gogh)",
+	}
+
+	local light_shcemes = {
+		"Catppuccin Latte",
+		"Catppuccin Latte (Gogh)",
+		"Tokyo Night Day",
+		"Tokyo Night Light (Gogh)",
+		"tokyonight-day",
+	}
+	if appearance:find("Dark") then
+		return night_schemes[math.random(1, #night_schemes)]
+	else
+		return light_shcemes[math.random(1, #light_shcemes)]
+	end
+end
+config.color_scheme = scheme_for_appearance(get_appearance())
 config.font = wezterm.font_with_fallback({
 	{ family = "FiraCode Nerd Font", weight = "Bold" },
 	{ family = "LXGW WenKai", weight = "Bold" },

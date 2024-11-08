@@ -11,7 +11,7 @@ function CmdExists($cmdName){
 
 if (CmdExists("oh-my-posh")) {
   $env:POSH_GIT_ENABLED = $true
-  oh-my-posh init pwsh --config "$HOME\Documents\PowerShell\tokoyonight.json" | Invoke-Expression
+  oh-my-posh init pwsh --config "$HOME\.config\omp\tokoyonight.json" | Invoke-Expression
 }
 if (CmdExists("zoxide")){
   Invoke-Expression (& { (zoxide init powershell | Out-String) })
