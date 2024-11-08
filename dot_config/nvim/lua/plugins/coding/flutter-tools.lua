@@ -1,7 +1,6 @@
 return {
   "akinsho/flutter-tools.nvim",
-  lazy = false,
-  cond = not vim.g.vscode and not vim.g.is_windows,
+  cond = 1 == vim.fn.executable("flutter"),
   dependencies = {
     "nvim-lua/plenary.nvim",
     "stevearc/dressing.nvim",

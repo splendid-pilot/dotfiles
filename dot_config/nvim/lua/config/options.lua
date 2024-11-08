@@ -28,7 +28,7 @@ vim.diagnostic.config({
 if vim.g.is_wsl then
   if vim.g.is_ssh_session then
     local function paste()
-      return function(lins)
+      return function(_)
         local content = vim.fn.getreg('"')
         return vim.split(content, "\n")
       end
@@ -93,10 +93,21 @@ end
 if vim.g.is_windows or (vim.g.is_wsl and not vim.g.is_ssh_session) then
   local hour = os.date("*t", os.time()).hour
   vim.schedule(function()
-    if hour < 18 then
+    if 7 <= hour and hour < 18 then
       vim.o.background = "light"
     else
       vim.o.background = "dark"
     end
   end)
 end
+vim.filetype.add({
+  extension = {
+    gotmpl = "gotmpl",
+    tmpl = "gotmpl",
+  },
+  pattern = {
+    [".*/templates/.*%.tpl"] = "helm",
+    [".*/templates/.*%.ya?ml"] = "helm",
+    ["helmfile.*%.ya?ml"] = "helm",
+  },
+})

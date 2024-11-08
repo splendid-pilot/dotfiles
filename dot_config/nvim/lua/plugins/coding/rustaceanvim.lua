@@ -1,6 +1,6 @@
 return {
   "mrcjkb/rustaceanvim",
-  cond = not vim.g.vscode and not vim.g.is_windows,
+  cond = 1 == vim.fn.executable("cargo") and not vim.g.vscode,
   config = function()
     local mason_registry = require("mason-registry")
     local codelldb = mason_registry.get_package("codelldb")

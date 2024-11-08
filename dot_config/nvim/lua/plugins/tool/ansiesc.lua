@@ -1,8 +1,7 @@
 return {
-	"powerman/vim-plugin-AnsiEsc",
-	lazy = true,
-	cond = not vim.g.vscode,
-	cmd = {
-		"AnsiEsc",
-	},
+  "powerman/vim-plugin-AnsiEsc",
+  cond = not vim.g.vscode,
+  cmd = {
+    "AnsiEsc",
+  },
 }

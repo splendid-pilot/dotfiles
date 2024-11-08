@@ -1,7 +1,6 @@
 return {
-	"ellisonleao/glow.nvim",
-	lazy = true,
-	cond = not vim.g.vscode,
-	config = true,
-	cmd = { "Glow" },
+  "ellisonleao/glow.nvim",
+  cond = 1 == vim.fn.executable("glow") and not vim.g.vscode,
+  config = true,
+  cmd = { "Glow" },
 }
