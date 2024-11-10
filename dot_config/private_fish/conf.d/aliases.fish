@@ -27,3 +27,4 @@ abbr -a glog git log --oneline --decorate --graph
 abbr -a grs git restore
 abbr -a gst git status
 abbr -a gf git fetch
+abbr -a bhelp bat -plhelp

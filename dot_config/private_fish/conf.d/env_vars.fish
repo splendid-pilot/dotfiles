@@ -41,7 +41,6 @@ switch $machine
     case wsl
         set -gx UNISON "$XDG_CONFIG_HOME/unison"
         set -gx skip_global_compinit 1
-        set -gx HISTFILE "$ZDOTDIR/.zhistory"
         set -gx EDITOR "$HOMEBREW_PREFIX/bin/nvim"
         set -gx VISUAL "$HOMEBREW_PREFIX/bin/nvim"
         set -gx DISPLAY "localhost:0"
@@ -60,7 +59,6 @@ switch $machine
         set -gx HTTPS_PROXY "http://127.0.0.1:7897"
         set -gx ALL_PROXY "socks5://127.0.0.1:7897"
         set -gx NO_PROXY "127.0.0.1,::1,localhost"
-        set -gx HISTFILE "$ZDOTDIR/.zsh_history"
         set -gx EDITOR nvim
         set -gx VISUAL nvim
 end
@@ -110,7 +108,29 @@ set -gx FZF_ALT_C_COMMAND "fd --type d --hidden --strip-cwd-prefix --exclude .gi
 set -gx FZF_CTRL_T_OPTS "--select-1 --exit-0"
 set -gx FZF_CTRL_R_OPTS "--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 set -gx FZF_ALT_C_OPTS "--preview 'tree -C {} | head -200' --select-1 --exit-0"
-set -gx FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS --ansi"
+
+set LIGHT_HOUR 7
+set DARK_HOUR 19
+
+set FZF_LIGHT_OPTS "--color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
+--color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
+--color=marker:#7287fd,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39 \
+--color=selected-bg:#bcc0cc \
+--multi"
+
+set FZF_DARK_OPTS "--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+--color=selected-bg:#45475a \
+--multi"
+
+set current_hour (date +%H)
+
+if test $current_hour -ge $LIGHT_HOUR -a $current_hour -lt $DARK_HOUR
+    set -gx FZF_DEFAULT_OPTS $FZF_LIGHT_OPTS
+else
+    set -gx FZF_DEFAULT_OPTS $FZF_DARK_OPTS
+end
 
 set -gx SBCL_HOME /home/theo/programs/sbcl/lib/sbcl
 set -gx GOBIN "/home/theo/.local/share/go/bin"

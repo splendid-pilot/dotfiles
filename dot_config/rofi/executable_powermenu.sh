@@ -51,7 +51,7 @@ confirm_cmd() {
         -mesg 'Are you Sure?' \
         -theme "${dir}"/${theme}.rasi
       ;;
-    "i3")
+    "i3" | "gnome-xorg" | "gnome")
       rofi -theme-str 'window {location: center; anchor: center; fullscreen: false; width: 350px;}' \
         -theme-str 'mainbox {children: [ "message", "listview" ];}' \
         -theme-str 'listview {columns: 2; lines: 1;}' \

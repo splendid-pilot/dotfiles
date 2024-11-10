@@ -23,8 +23,8 @@ if status is-interactive
         end
     end
     if type -q carapace
-        set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
-        # carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
+        set -Ux CARAPACE_BRIDGES 'bash,inshellisense,argcomplete,carapace,clap,click,cobra,complete,fish,inshellisense,urfavecli,zsh'
+        carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
         carapace _carapace | source
     end
 end
