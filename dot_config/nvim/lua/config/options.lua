@@ -75,19 +75,33 @@ end
 
 -- windows specific settings
 if vim.g.is_windows then
-  vim.opt.shell = "nu"
-  -- local shell_config = function()
-  -- 	local basecmd = "-NoLogo -MTA -ExecutionPolicy RemoteSigned"
-  -- 	local ctrlcmd =
-  -- 		"-Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
-  -- 	vim.api.nvim_set_option_value("shell", vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell", {})
-  -- 	vim.api.nvim_set_option_value("shellcmdflag", string.format("%s %s;", basecmd, ctrlcmd), {})
-  -- 	vim.api.nvim_set_option_value("shellredir", '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode', {})
-  -- 	vim.api.nvim_set_option_value("shellpipe", '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode', {})
-  -- 	vim.api.nvim_set_option_value("shellquote", "", {})
-  -- 	vim.api.nvim_set_option_value("shellxquote", "", {})
-  -- end
-  -- shell_config()
+  local shell_config
+  if vim.fn.executable("nu") == 1 then
+    shell_config = function()
+      vim.opt.sh = "nu"
+      vim.opt.shelltemp = false
+      vim.opt.shellredir = "out+err> %s"
+      vim.opt.shellcmdflag = "--stdin --no-newline -c"
+      vim.opt.shellxescape = ""
+      vim.opt.shellxquote = ""
+      vim.opt.shellquote = ""
+      vim.opt.shellpipe =
+        "| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s } | into record"
+    end
+  else
+    shell_config = function()
+      local basecmd = "-NoLogo -MTA -ExecutionPolicy RemoteSigned"
+      local ctrlcmd =
+        "-Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
+      vim.api.nvim_set_option_value("shell", vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell", {})
+      vim.api.nvim_set_option_value("shellcmdflag", string.format("%s %s;", basecmd, ctrlcmd), {})
+      vim.api.nvim_set_option_value("shellredir", '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode', {})
+      vim.api.nvim_set_option_value("shellpipe", '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode', {})
+      vim.api.nvim_set_option_value("shellquote", "", {})
+      vim.api.nvim_set_option_value("shellxquote", "", {})
+    end
+  end
+  shell_config()
 end
 
 if vim.g.is_windows or (vim.g.is_wsl and not vim.g.is_ssh_session) then

@@ -15,15 +15,15 @@
     "unfocused": "#808080"
   },
   "stackbar": {
-    "height": 30,
-    "mode": "OnStack",
+    "height": 20,
+    "mode": "Never",
     "tabs": {
-      "width": 150,
+      "width": 50,
       "focused_text": "#00a542",
       "unfocused_text": "#b3b3b3",
       "background": "#141414",
       "font_family": "FiraCode Nerd Font",
-      "font_size": 20
+      "font_size": 15
     }
   },
   "animation": {
