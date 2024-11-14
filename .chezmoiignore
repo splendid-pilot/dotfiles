@@ -3,8 +3,7 @@ README.md
 # WSL-specific settings (no window manager config)
 {{ if eq .machine "linux-wsl" }}
 .config/*
-.config/nvim/lua/plugins/kitty-scrollback.lua
-!.config/{arai2,atuin,bash,bottom,nushell,omp,conda,doom,fd,fish,helix,lsd,nvim,yazi,zsh,oh-my-posh}
+!.config/{arai2,atuin,bash,bottom,nushell,omp,conda,doom,fd,fish,helix,lsd,nvim,yazi,zsh,oh-my-posh,kitty}
 {{ end }}
 
 # Windows-specific settings

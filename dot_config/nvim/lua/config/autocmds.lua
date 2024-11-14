@@ -18,3 +18,13 @@ autocmd("FileType", {
 	group = MineGroup,
 	command = "set formatoptions-=cro",
 })
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	group = vim.api.nvim_create_augroup("KittyScrollbackNvimFileType", { clear = true }),
+	pattern = { "kitty-scrollback" },
+	callback = function()
+		vim.cmd([[
+        highlight! link KittyScrollbackNvimVisual Visual
+        ]])
+		return true
+	end,
+})

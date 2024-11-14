@@ -1,7 +1,9 @@
 if status is-interactive
-    # if type -q fzf
-    #     fzf --fish | source
-    # end
+    if type -q fzf
+        fzf --fish | source
+        bind -e \ct fzf-file-widget
+        bind \cg fzf-file-widget
+    end
 
     if type -q atuin
         atuin init fish --disable-up-arrow | source
@@ -15,10 +17,12 @@ if status is-interactive
         zoxide init fish | source
     end
 
-    if uname -a | grep -q WSL
-        if test -z "$SSH_TTY"
-            if type -q zellij && test -z "$ZELLIJ"
-                eval (zellij setup --generate-auto-start fish | string collect)
+    if false
+        if uname -a | grep -q WSL
+            if test -z "$SSH_TTY"
+                if type -q zellij && test -z "$ZELLIJ" && test "$TERM_PROGRAM" != vscode && test -z (string match "*kitty" $TERM)
+                    eval (zellij setup --generate-auto-start fish | string collect)
+                end
             end
         end
     end

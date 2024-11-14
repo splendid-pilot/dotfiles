@@ -28,3 +28,4 @@ abbr -a grs git restore
 abbr -a gst git status
 abbr -a gf git fetch
 abbr -a bhelp bat -plhelp
+abbr -a drmi docker images | awk '$1 == "<none>" || $2 == "<none>" {print $3}' | xargs -r
