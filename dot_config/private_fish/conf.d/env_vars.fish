@@ -75,28 +75,30 @@ set -gx HISTCONTROL ignoreboth
 set -gx HISTDUP erase
 
 set paths \
-"$XDG_DATA_HOME/bin" \
-"$XDG_DATA_HOME/go/bin" \
-"$XDG_CONFIG_HOME/emacs/bin" \
-"$XDG_CONFIG_HOME/miktex/bin" \
-"$XDG_DATA_HOME/npm/bin" \
-"$XDG_DATA_HOME/JetBrains/Toolbox/scripts" \
-"$XDG_DATA_HOME/bun/bin" \
-"$XDG_DATA_HOME/deno/bin" \
-"$XDG_DATA_HOME/juliaup/bin" \
-"$XDG_DATA_HOME/flutter/bin" \
-"$XDG_DATA_HOME/jdk-19.0.1/bin" \
-"$HOMEBREW_PREFIX/bin" \
-"$HOMEBREW_PREFIX/sbin" \
-"/usr/local/cuda-12.4/bin" \
-/usr/local/cuda/bin \
-"/home/theo/.pub-cache/bin"
+    "$XDG_DATA_HOME/bin" \
+    "$XDG_DATA_HOME/go/bin" \
+    "$XDG_CONFIG_HOME/emacs/bin" \
+    "$XDG_CONFIG_HOME/miktex/bin" \
+    "$XDG_DATA_HOME/npm/bin" \
+    "$XDG_DATA_HOME/JetBrains/Toolbox/scripts" \
+    "$XDG_DATA_HOME/bun/bin" \
+    "$XDG_DATA_HOME/deno/bin" \
+    "$XDG_DATA_HOME/juliaup/bin" \
+    "$XDG_DATA_HOME/flutter/bin" \
+    "$XDG_DATA_HOME/jdk-19.0.1/bin" \
+    "$HOMEBREW_PREFIX/bin" \
+    "$HOMEBREW_PREFIX/sbin" \
+    "/usr/local/cuda-12.4/bin" \
+    /usr/local/cuda/bin \
+    "/home/theo/.pub-cache/bin"
 
 for entry in $paths
     fish_add_path $entry --path
 end
 
-set envs "$XDG_DATA_HOME/cargo/env.fish"
+set envs \
+    "$XDG_DATA_HOME/cargo/env.fish"\
+"$XDG_DATA_HOME/uv/env"
 for env in $envs
     if test -f $env
         source $env
@@ -108,6 +110,28 @@ set -gx FZF_ALT_C_COMMAND "fd --type d --hidden --strip-cwd-prefix --exclude .gi
 set -gx FZF_CTRL_T_OPTS "--select-1 --exit-0"
 set -gx FZF_CTRL_R_OPTS "--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 set -gx FZF_ALT_C_OPTS "--preview 'tree -C {} | head -200' --select-1 --exit-0"
+
+set LIGHT_HOUR 7
+set DARK_HOUR 19
+
+set FZF_LIGHT_OPTS "--color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
+--color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
+--color=marker:#7287fd,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39 \
+--color=selected-bg:#bcc0cc \
+--multi"
+
+set FZF_DARK_OPTS "--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+--color=selected-bg:#45475a \
+--multi"
+set current_hour (date +%H)
+if test $current_hour -ge $LIGHT_HOUR -a $current_hour -lt $DARK_HOUR
+    set -gx FZF_DEFAULT_OPTS $FZF_LIGHT_OPTS
+else
+
+    set -gx FZF_DEFAULT_OPTS $FZF_DARK_OPTS
+end
 
 set -gx SBCL_HOME /home/theo/programs/sbcl/lib/sbcl
 set -gx GOBIN "/home/theo/.local/share/go/bin"

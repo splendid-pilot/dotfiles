@@ -2,43 +2,7 @@
 no_retry = true
 cleanup = false
 notify_each_step = true
-# only = [
-#   "system",
-#   "wsl",
-#   "wsl_update",
-#   "deno",
-#   "deno"
-#   "miktex",
-#   "powershell",
-#   "scoop",
-#   "snap",
-#   "cargo",
-#   "conda",
-#   "git_repos",
-#   "self_update",
-#   "shell",
-#   "node",
-#   "go",
-#   "emacs",
-#   "firmware",
-#   "flatpak",
-#   "config_update",
-#   "chezmoi",
-#   "custom_commands",
-#   "github_cli_extensions",
-#   "gnome_shell_extensions",
-#   "pip3",
-#   "pip_review",
-#   "pip_review_local",
-#   "pipupgrade",
-#   "pipx",
-#   "yadm",
-#   "rustup",
-#   "tldr",
-#   "brew_cask",
-#   "brew_formula",
-# ]
-
+disable = ["emacs"]
 no_self_update = false
 
 [git]

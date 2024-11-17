@@ -31,4 +31,10 @@ if status is-interactive
         carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
         carapace _carapace | source
     end
+
+    set FNM_PATH "/home/theo/.local/share/fnm"
+    if [ -d "$FNM_PATH" ]
+        set PATH "$FNM_PATH" $PATH
+        fnm env | source
+    end
 end
