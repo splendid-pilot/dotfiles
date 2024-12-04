@@ -1,6 +1,6 @@
 #!/bin/bash
 CURRENT_THEME=$(gsettings get org.gnome.desktop.interface color-scheme)
-
+read -r SUNRISE_TIME SUNSET_TIME < <(/usr/bin/python3 "$XDG_CONFIG_HOME/sway/get_sunrise_sunset_time.py")
 BAT_CONFIG="$XDG_CONFIG_HOME/bat/config"
 
 KITTY_THEME_DARK="Tokyo Night"
@@ -64,21 +64,17 @@ toggle_theme() {
 }
 
 run_on_schedule() {
-  LIGHT_HOUR=7
-  DARK_HOUR=19
-
   while true; do
-    HOUR=$(date +'%H')
-
-    if [ "$HOUR" -ge "$DARK_HOUR" ] || [ "$HOUR" -lt "$LIGHT_HOUR" ]; then
-      echo "Current hour: $HOUR" >>/tmp/theme-debug.log
-      set_dark_theme
-    else
-      echo "Setting light theme" >>/tmp/theme-debug.log
+    CURRENT_TIME=$(date +'%H:%M')
+    if [[ "$CURRENT_TIME" > "$SUNRISE_TIME" && "$CURRENT_TIME" < "$SUNSET_TIME" ]]; then
+      echo "light"
       set_light_theme
+    else
+      echo "dark"
+      set_dark_theme
     fi
 
-    sleep 3600
+    sleep 1800
   done
 }
 

@@ -16,6 +16,7 @@ set -gx CUDA_CACHE_PATH "$XDG_CACHE_HOME/nv"
 set -gx LD_LIBRARY_PATH /usr/local/cuda/lib64:$LD_LIBRARY_PATH
 set -gx DOTNET_CLI_HOME "$XDG_DATA_HOME/dotnet"
 set -gx RUSTUP_HOME "$XDG_DATA_HOME/rustup"
+set -gx VCPKG_ROOT "$XDG_DATA_HOME/vcpkg"
 set -gx BUNDLE_USER_CONFIG "$XDG_CONFIG_HOME/bundle"
 set -gx BUNDLE_USER_CACHE "$XDG_CACHE_HOME/bundle"
 set -gx INPUTRC "$XDG_CONFIG_HOME/readline/inputrc"
@@ -88,6 +89,7 @@ set paths \
     "$XDG_DATA_HOME/jdk-19.0.1/bin" \
     "$HOMEBREW_PREFIX/bin" \
     "$HOMEBREW_PREFIX/sbin" \
+    $VCPKG_ROOT \
     "/usr/local/cuda-12.4/bin" \
     /usr/local/cuda/bin \
     "/home/theo/.pub-cache/bin"

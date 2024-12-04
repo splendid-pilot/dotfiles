@@ -26,11 +26,11 @@ if status is-interactive
             end
         end
     end
-    if type -q carapace
-        set -Ux CARAPACE_BRIDGES 'bash,inshellisense,argcomplete,carapace,clap,click,cobra,complete,fish,inshellisense,urfavecli,zsh'
-        carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
-        carapace _carapace | source
-    end
+    # if type -q carapace
+    #     set -Ux CARAPACE_BRIDGES 'bash,inshellisense,argcomplete,carapace,clap,click,cobra,complete,fish,inshellisense,urfavecli,zsh'
+    #     carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
+    #     carapace _carapace | source
+    # end
 
     set FNM_PATH "/home/theo/.local/share/fnm"
     if [ -d "$FNM_PATH" ]
